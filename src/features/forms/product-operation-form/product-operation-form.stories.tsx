@@ -63,7 +63,6 @@ const createOperationInitialValuesWithData = (operation: {
   amount: operation.amount,
   type: operation.type,
   categoryId: operation.category.id,
-  // categoryName: operation.category.name,
 });
 
 const RenderForm = (mode: FormMode, initialValues: ProductOperationFormValues) => {
@@ -117,26 +116,6 @@ export const EditProduct: Story = {
       },
     };
     return RenderForm('editProduct', createProductInitialValuesWithData(sampleProduct));
-  },
-};
-
-export const CreateOperation: Story = {
-  render: () => RenderForm('createOperation', createOperationInitialValues()),
-};
-
-export const EditOperation: Story = {
-  render: () => {
-    const sampleOperation = {
-      name: 'Profit',
-      desc: 'Monthly profit',
-      amount: 50000,
-      category: {
-        id: '42',
-        name: 'finance',
-      },
-      type: 'Profit' as const,
-    };
-    return RenderForm('editOperation', createOperationInitialValuesWithData(sampleOperation));
   },
 };
 

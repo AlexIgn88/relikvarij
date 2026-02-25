@@ -35,7 +35,6 @@ function App() {
             }
           />
           <Route path={APP_ROUTES.PRODUCTS} element={<ItemsScreen />} />
-          <Route path={APP_ROUTES.OPERATIONS} element={<ItemsScreen />} />
           <Route
             path={APP_ROUTES.CART}
             element={

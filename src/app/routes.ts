@@ -8,6 +8,5 @@ export const APP_ROUTES = {
   ANY: '*',
   PROFILE: '/profile',
   PRODUCTS: '/products',
-  OPERATIONS: '/operations',
   CART: '/cart',
 } as const;

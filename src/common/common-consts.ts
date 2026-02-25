@@ -5,7 +5,6 @@ export const API = {
   SIGNIN: '/signin',
   PROFILE: '/profile',
   PRODUCTS: '/products',
-  OPERATIONS: '/operations',
   ORDERS: '/orders',
 } as const;
 

@@ -29,12 +29,6 @@ const Navbar: FC = () => {
       >
         {t('navbar.products')}
       </NavLink>
-      <NavLink
-        to="/operations"
-        className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
-      >
-        {t('navbar.operations')}
-      </NavLink>
       {token && profile && (
         <NavLink to="/cart" className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>
           {t('navbar.cart')}
