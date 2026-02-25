@@ -1,0 +1,76 @@
+import React, { FC } from 'react';
+import { Mode } from 'src/features/items/items-list/items-list-consts';
+import ItemsList from 'src/features/items/items-list/items-list';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import ProductCardPreview from 'src/common/product-card-preview/product-card-preview';
+import { useTranslation } from 'react-i18next';
+import s from './shopping-cart-screen.modele.scss';
+
+import {
+  clearCart,
+  createOrder,
+  selectCartItems,
+  selectloadItemsStatus,
+  selectProducts,
+} from 'src/features/cart/cart-slice';
+import { THUNK_STATUSES } from 'src/store/store-consts';
+
+const ShoppingCartScreen: FC = () => {
+  const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+
+  const products = useAppSelector(selectProducts);
+  const cartItems = useAppSelector(selectCartItems);
+  const loadItemsStatus = useAppSelector(selectloadItemsStatus);
+
+  const handleCreateOrder = () => {
+    const productsForOrder = cartItems.map((cartItem) => ({
+      id: cartItem.product.id,
+      quantity: cartItem.quantity,
+    }));
+    dispatch(createOrder(productsForOrder));
+  };
+  const handleClearCart = () => dispatch(clearCart());
+
+  const renderItem = ({ item }: { item: any }) => {
+    return (
+      <div className={s.item}>
+        <ProductCardPreview product={item} />
+      </div>
+    );
+  };
+
+  if (loadItemsStatus === THUNK_STATUSES.FULFILLED) {
+    return (
+      <main className={s.orderCreated}>
+        <div>Спасибо за Ваш заказ!</div>
+      </main>
+    );
+  }
+
+  if (products.length === 0) {
+    return (
+      <main>
+        <div className={s.empty}>
+          <p>{t('screens.cart.empty')}</p>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main>
+      <div className={s.cartControlButtonsPanel}>
+        <button className={s.cartControlButtons} onClick={handleCreateOrder}>
+          Заказать
+        </button>
+        <button className={s.cartControlButtons} onClick={handleClearCart}>
+          Очистить корзину
+        </button>
+      </div>
+      <ItemsList data={products} mode={Mode.preview} renderItem={renderItem} />
+    </main>
+  );
+};
+
+export default ShoppingCartScreen;

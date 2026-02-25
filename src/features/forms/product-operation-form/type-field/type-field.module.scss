@@ -1,0 +1,9 @@
+.root {
+  margin-bottom: 0;
+  width: 100%;
+
+  :global(.ant-select) {
+    width: 100%;
+    font-family: inherit;
+  }
+}

@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.deleteButton {
+  width: 185px;
+  background: linear-gradient(145deg, #2a2f37, #1e2228);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f87171;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.05);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(248, 113, 113, 0.15), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  &:hover {
+    background: linear-gradient(145deg, #3a0d0d, #1f0909);
+    border-color: rgba(248, 113, 113, 0.4);
+    color: #fca5a5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(248, 113, 113, 0.25), inset 0 0 10px rgba(248, 113, 113, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(248, 113, 113, 0.3), inset 0 0 8px rgba(248, 113, 113, 0.3);
+  }
+}

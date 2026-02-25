@@ -1,0 +1,24 @@
+import { FormProps } from 'src/features/forms/types';
+import { Product, Operation } from 'src/homeworks/ts1/3_write';
+
+export type FormMode = 'createProduct' | 'editProduct' | 'createOperation' | 'editOperation';
+
+export type ProductOperationFormValues = {
+  name: string;
+  photo?: string;
+  desc?: string;
+  price?: number;
+  oldPrice?: number;
+  amount?: number;
+  type?: 'Cost' | 'Profit';
+  categoryId: string;
+  // categoryName?: string;
+};
+
+export type ProductOperationFormErrors = Record<string, string>;
+export type ProductOperationFormTouched = Record<string, boolean>;
+
+export type ProductOperationFormProps = FormProps<ProductOperationFormValues> & {
+  mode: FormMode;
+  initialData?: Product | Operation;
+};

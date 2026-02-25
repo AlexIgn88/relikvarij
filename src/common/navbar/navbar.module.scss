@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  gap: 20px;
+  padding: 14px 24px;
+  font-family: 'Inter', sans-serif;
+}
+
+.link {
+  color: #dbe4ff;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+
+  transition: background 0.3s ease, color 0.3s ease, transform 0.25s ease;
+
+  &:hover {
+    background: rgba(140, 170, 255, 0.25);
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
+}
+
+.active {
+  background: linear-gradient(135deg, #3557d6, #1e2f80);
+  color: #ffffff;
+  border: 1px solid rgba(140, 170, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(60, 90, 255, 0.4);
+
+  transform: translateY(-1px);
+}
