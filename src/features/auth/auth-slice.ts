@@ -107,7 +107,6 @@ export const signup = createAsyncThunk<
   const { token, profile } = result;
 
   dispatch(saveTokenToStorage(token));
-  // dispatch(setProfile(createFakeProfile(token, profile)));
   dispatch(setProfile(profile));
   navigate('/');
 });

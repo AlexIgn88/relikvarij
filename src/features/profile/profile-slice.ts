@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { LoadProfileSuccessResponse, Profile, UserProfile } from 'src/features/profile/profile-consts';
+import { LoadProfileSuccessResponse, Profile } from 'src/features/profile/profile-consts';
 import { API, API_BASE_URL, ApiError } from 'src/common/common-consts';
 import { RootState } from 'src/store/store';
 
 type ProfileState = {
-  profile: UserProfile | Profile | null;
+  profile: Profile | null;
 };
 
 const initialState: ProfileState = {
@@ -16,7 +16,7 @@ const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    setProfile: (state, action: PayloadAction<UserProfile | Profile | null>) => {
+    setProfile: (state, action: PayloadAction<Profile | null>) => {
       state.profile = action.payload;
     },
     clearProfile: (state) => {
