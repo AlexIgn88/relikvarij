@@ -11,7 +11,6 @@ type ItemsState = {
   products: Product[];
   productsPageNumber: number;
   productsTotal: number;
-
   error: string | null;
 };
 
@@ -64,7 +63,7 @@ export default itemsSlice.reducer;
 
 const selectItemsState = (state: RootState) => state.items;
 
-export const selectloadItemsStatus = (state: RootState) => selectItemsState(state).loadItemsStatus;
+export const selectloadItemsStatus = createSelector([selectItemsState], (itemsState) => itemsState.loadItemsStatus);
 
 export const selectProducts = createSelector([selectItemsState], (itemsState) => itemsState.products);
 
@@ -73,19 +72,24 @@ export const selectProductsPagination = createSelector([selectItemsState], (item
   total: itemsState.productsTotal,
 }));
 
-export const loadProducts = createAsyncThunk<LoadProductsSuccessResponse, LoadPageArg, { rejectValue: ApiError[] }>(
-  'items/loadProducts',
-  async ({ pageNumber, pageSize = PAGE_SIZE }, { rejectWithValue }) => {
-    const url = `${API_BASE_URL}${API.PRODUCTS}?pageNumber=${pageNumber}&pageSize=${pageSize}`;
-    const response = await fetch(url);
-    const result = await response.json();
+export const loadProducts = createAsyncThunk<
+  LoadProductsSuccessResponse,
+  LoadPageArg,
+  { state: RootState; rejectValue: ApiError[] }
+>('items/loadProducts', async ({ pageNumber, pageSize = PAGE_SIZE }, { getState, rejectWithValue }) => {
+  const { categoryIds } = getState().categories;
 
-    if (result.errors) {
-      return rejectWithValue(result.errors as ApiError[]);
-    }
-    return result;
+  const url = `${API_BASE_URL}${API.PRODUCTS}?categoryIds=${JSON.stringify(
+    categoryIds
+  )}&pageNumber=${pageNumber}&pageSize=${pageSize}`;
+  const response = await fetch(url);
+  const result = await response.json();
+
+  if (result.errors) {
+    return rejectWithValue(result.errors as ApiError[]);
   }
-);
+  return result;
+});
 
 export const addNewProduct = createAsyncThunk<Product, NewProduct, { rejectValue: ApiError[] }>(
   'items/addNewProduct',

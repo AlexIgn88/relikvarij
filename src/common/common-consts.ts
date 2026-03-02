@@ -4,6 +4,7 @@ export const API = {
   SIGNUP: '/signup',
   SIGNIN: '/signin',
   PROFILE: '/profile',
+  CATEGORIES: '/categories',
   PRODUCTS: '/products',
   ORDERS: '/orders',
 } as const;
