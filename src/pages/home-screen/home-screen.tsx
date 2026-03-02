@@ -9,6 +9,7 @@ import { APP_ROUTES } from 'src/app/routes';
 
 const HomeScreen: FC = () => {
   const { t } = useTranslation();
+
   const token = useAppSelector((state) => state.auth.token);
   const profile = useAppSelector((state) => state.profile.profile);
 
@@ -28,21 +29,9 @@ const HomeScreen: FC = () => {
     <main>
       <img src={logo} className="App-logo" alt="logo" />
       <ul className={s.links}>
-        {/*<li>*/}
-        {/*  <Link to={APP_ROUTES.SIGNUP_FUNCTIONAL_COMPONENT_SCREEN}>Signup with functional component</Link>*/}
-        {/*</li>*/}
         <li>
-          <Link to={APP_ROUTES.SIGNUP_REDUX_THUNK_SCREEN}>
-            Signup
-            {/*with Redux Thunk*/}
-          </Link>
+          <Link to={APP_ROUTES.SIGNUP}>Signup</Link>
         </li>
-        {/*<li>*/}
-        {/*  <Link to={APP_ROUTES.SIGNUP_REDUX_SAGA_SCREEN}>Signup with Redux Saga</Link>*/}
-        {/*</li>*/}
-        {/*<li>*/}
-        {/*  <Link to={APP_ROUTES.SIGNUP_REDUX_TOOLKIT_QUERY_SCREEN}>Signup with Redux Toolkit Query</Link>*/}
-        {/*</li>*/}
         <li>
           <Link to={APP_ROUTES.LOGIN}>Login</Link>
         </li>
