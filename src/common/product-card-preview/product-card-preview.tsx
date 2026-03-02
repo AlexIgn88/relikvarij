@@ -50,7 +50,7 @@ const ProductCardPreview: FC<Props> = ({ product, defaultCount = 0, actions, ima
         <h3 className={s.name}>{name}</h3>
         <p className={s.description}>{description}</p>
         <div className={s.footer}>
-          <span className={s.price}>${price}</span>
+          <span className={s.price}>₽&nbsp;{price}</span>
           <div className={s.actions}>{mergedActions}</div>
         </div>
       </div>
