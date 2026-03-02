@@ -10,6 +10,8 @@ export const API = {
 
 export const LOCAL_STORAGE_KEYS = { TOKEN_STORAGE_KEY: 'auth_token' } as const;
 
+export const COMMAND_ID = '202602_alex-team-graduation';
+
 export type LoadItemsSuccessResponse<T> = {
   data: T[];
   pagination: {

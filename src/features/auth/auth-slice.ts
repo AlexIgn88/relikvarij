@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { API, API_BASE_URL, ApiError } from 'src/common/common-consts';
+import { API, API_BASE_URL, ApiError, COMMAND_ID } from 'src/common/common-consts';
 import { saveTokenToStorage } from 'src/features/auth/auth-thunks';
 import { SignInBody, SignInSuccessResponse, SignUpBody, SignupSuccessResponse } from 'src/features/auth/auth-consts';
 import { setProfile } from 'src/features/profile/profile-slice';
@@ -91,12 +91,13 @@ export const signup = createAsyncThunk<
   { data: SignUpBody; navigate: ReturnType<typeof useNavigate> },
   { rejectValue: ApiError[] }
 >('auth/signup', async ({ data, navigate }, { dispatch, rejectWithValue }) => {
+  const newUserData = { ...data, commandId: COMMAND_ID };
   const response = await fetch(`${API_BASE_URL}${API.SIGNUP}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(newUserData),
   });
 
   const result = await response.json();
