@@ -78,6 +78,10 @@ export default authSlice.reducer;
 export const { setToken, setInitialized, removeToken, signupSagaRequest, signupSagaSuccess, signupSagaFailure } =
   authSlice.actions;
 
+const selectAuthState = (state: RootState) => state.auth;
+
+export const selectToken = createSelector([selectAuthState], (authState) => authState.token);
+
 export const selectAuthError = (state: RootState) => state.auth.error;
 
 export const selectAuthErrorMessages = createSelector([selectAuthError], (error) => error?.map((e) => e.message) ?? []);

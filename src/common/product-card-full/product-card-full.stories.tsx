@@ -44,17 +44,3 @@ export const ProductCardFullStory: Story = {
     product: mockProduct1,
   },
 };
-
-export const WithCustomActions: Story = {
-  args: {
-    product: mockProduct2,
-    actions: [
-      <button key="compare" type="button">
-        Compare
-      </button>,
-      <button key="favorite" type="button">
-        Favorite
-      </button>,
-    ],
-  },
-};
