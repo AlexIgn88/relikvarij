@@ -9,6 +9,7 @@ import { logout } from 'src/features/auth/auth-thunks';
 import { useNavigate } from 'react-router-dom';
 import { APP_ROUTES } from 'src/app/routes';
 import { useTranslation } from 'react-i18next';
+import LoginLinks from 'src/common/login-links/login-links';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -29,13 +30,15 @@ const Header = () => {
       </div>
       <Navbar />
       <div className={s.right}>
-        {token && profile && (
+        {token && profile ? (
           <div className={s.user}>
             <span className={s.userName}>{profile.email}</span>
             <button onClick={handleLogout} className={s.logoutButton}>
               {t('header.logout')}
             </button>
           </div>
+        ) : (
+          <LoginLinks className={s.login} />
         )}
         <LanguageToggle />
         <ThemeToggle />

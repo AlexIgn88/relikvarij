@@ -4,8 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'src/store/hooks';
 
 import s from './home-screen.module.scss';
-import { Link } from 'react-router-dom';
-import { APP_ROUTES } from 'src/app/routes';
+import LoginLinks from 'src/common/login-links/login-links';
 
 const HomeScreen: FC = () => {
   const { t } = useTranslation();
@@ -28,14 +27,7 @@ const HomeScreen: FC = () => {
   return (
     <main>
       <img src={logo} className="App-logo" alt="logo" />
-      <ul className={s.links}>
-        <li>
-          <Link to={APP_ROUTES.SIGNUP}>Signup</Link>
-        </li>
-        <li>
-          <Link to={APP_ROUTES.LOGIN}>Login</Link>
-        </li>
-      </ul>
+      <LoginLinks className={s.links} />
     </main>
   );
 };
