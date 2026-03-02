@@ -1,4 +1,4 @@
-import { Product } from 'src/homeworks/ts1/3_write';
+import { Product } from 'src/features/items/items-consts';
 
 export type CartItem = {
   product: Product;

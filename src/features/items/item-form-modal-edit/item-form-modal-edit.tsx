@@ -9,9 +9,8 @@ import {
 } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { selectProducts, editProduct } from 'src/features/items/items-slice';
-import { Product } from 'src/homeworks/ts1/3_write';
 
-import { NewProduct } from 'src/features/items/items-consts';
+import { NewProduct, Product } from 'src/features/items/items-consts';
 
 import { ProductFormValues } from 'src/features/items/item-form-modal-create/item-form-modal-consts';
 

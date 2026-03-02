@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { Product, Operation } from 'src/homeworks/ts1/3_write';
-import { LoadProductsSuccessResponse, NewProduct } from 'src/features/items/items-consts';
+import { LoadProductsSuccessResponse, NewProduct, Product } from 'src/features/items/items-consts';
 import { API, API_BASE_URL, ApiError, LoadPageArg, LOCAL_STORAGE_KEYS, PAGE_SIZE } from 'src/common/common-consts';
 import { THUNK_STATUSES, ThunkStatus } from 'src/store/store-consts';
 import { RootState } from 'src/store/store';

@@ -4,7 +4,7 @@ import s from './product-card-full.module.scss';
 import AddToCart from '../add-to-cart/add-to-cart';
 import { useAppSelector, useAppDispatch } from 'src/store/hooks';
 import { addToCart, updateQuantity } from 'src/features/cart/cart-slice';
-import { Product } from 'src/homeworks/ts1/3_write';
+import { Product } from 'src/features/items/items-consts';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import ProductCardPreview from './product-card-preview';
-import { Product } from 'src/homeworks/ts1/3_write';
+import { Product } from 'src/features/items/items-consts';
 
 const meta: Meta<typeof ProductCardPreview> = {
   title: 'Components/ProductCardPreview',
