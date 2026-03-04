@@ -14,9 +14,6 @@ export type ProductOperationFormValues = {
   categoryId: string;
 };
 
-export type ProductOperationFormErrors = Record<string, string>;
-export type ProductOperationFormTouched = Record<string, boolean>;
-
 export type ProductOperationFormProps = FormProps<ProductOperationFormValues> & {
   mode: FormMode;
   initialData?: Product;
