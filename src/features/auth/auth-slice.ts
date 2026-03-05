@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { API, API_BASE_URL, ApiError, COMMAND_ID } from 'src/common/common-consts';
+import { API, API_BASE_URL, ApiError, COMMAND_ID } from 'src/shared/lib/common-consts';
 import { saveTokenToStorage } from 'src/features/auth/auth-thunks';
 import { SignInBody, SignInSuccessResponse, SignUpBody, SignupSuccessResponse } from 'src/features/auth/auth-consts';
 import { setProfile } from 'src/entities/profile/profile-slice';

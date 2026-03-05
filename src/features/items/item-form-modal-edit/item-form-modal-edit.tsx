@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useMemo } from 'react';
-import ModalWindow from 'src/common/modal-window/modal-window';
+import Modal from 'src/shared/ui/modal/modal';
 import ProductOperationForm from 'src/features/forms/product-operation-form/product-operation-form';
 import { Formik } from 'formik';
 import { createValidate, getEmptyValues } from 'src/features/forms/product-operation-form/product-operation-form-utils';
@@ -74,7 +74,7 @@ const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
 
   return (
     <div>
-      <ModalWindow visible={true} setVisible={onClose}>
+      <Modal visible={true} setVisible={onClose}>
         <Formik
           initialValues={initialValues}
           validate={createValidate(mode)}
@@ -90,7 +90,7 @@ const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
             />
           )}
         </Formik>
-      </ModalWindow>
+      </Modal>
     </div>
   );
 };

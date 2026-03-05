@@ -4,7 +4,7 @@ import { Input } from 'antd';
 import type { FormikHandlers } from 'formik';
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { FormItem } from 'src/shared/ui/FormItem';
+import { FormItem } from 'src/shared/ui/form-item';
 import { getValidates } from 'src/utils/validation';
 import { ProfileFormProps } from '../types';
 import s from './name-field.module.scss';

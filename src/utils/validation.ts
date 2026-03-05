@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import type { FormikContextType } from 'formik';
 import { get } from './unchanged';
-import { Help } from '../shared/ui/FormItem';
+import { Help } from '../shared/ui/form-item';
 
 export type ValidateStatus = 'error' | '';
 

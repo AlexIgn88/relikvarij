@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { LoadProfileSuccessResponse, Profile } from 'src/entities/profile/profile-consts';
-import { API, API_BASE_URL, ApiError } from 'src/common/common-consts';
+import { API, API_BASE_URL, ApiError } from 'src/shared/lib/common-consts';
 import { RootState } from 'src/store/store';
 
 type ProfileState = {

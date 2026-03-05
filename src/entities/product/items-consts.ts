@@ -1,4 +1,4 @@
-import { LoadItemsSuccessResponse } from 'src/common/common-consts';
+import { LoadItemsSuccessResponse } from 'src/shared/lib/common-consts';
 
 export type LoadProductsSuccessResponse = LoadItemsSuccessResponse<Product>;
 

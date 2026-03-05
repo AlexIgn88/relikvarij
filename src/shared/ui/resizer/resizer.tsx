@@ -14,7 +14,7 @@ export type ResizerProps = {
 const MIN_SIZE = 32;
 
 const Resizer: FC<ResizerProps> = ({ className, children, initialWidth, initialHeight }) => {
-  const root = useRef<HTMLDivElement>();
+  const root = useRef<HTMLDivElement | null>(null);
 
   const [size, setSize] = useState({ width: initialWidth, height: initialHeight });
 

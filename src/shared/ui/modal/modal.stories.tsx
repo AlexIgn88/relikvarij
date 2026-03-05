@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import ModalWindow from './modal-window';
+import Modal from './modal';
 
-type Props = React.ComponentProps<typeof ModalWindow>;
+type Props = React.ComponentProps<typeof Modal>;
 
 type StoryArgs = Props & {
   content: string;
@@ -17,8 +17,8 @@ type StoryArgs = Props & {
 };
 
 const meta: Meta<StoryArgs> = {
-  title: 'Components/ModalWindow',
-  component: ModalWindow,
+  title: 'Components/Modal',
+  component: Modal,
   tags: ['autodocs'],
   argTypes: {
     visible: {
@@ -95,7 +95,7 @@ const ModalStory = (args: StoryArgs) => {
       <button type="button" onClick={() => setIsOpen(true)}>
         Open modal
       </button>
-      <ModalWindow visible={isOpen} setVisible={setIsOpen}>
+      <Modal visible={isOpen} setVisible={setIsOpen}>
         <div
           style={{
             fontSize: `${fontSize}px`,
@@ -111,7 +111,7 @@ const ModalStory = (args: StoryArgs) => {
         >
           {content}
         </div>
-      </ModalWindow>
+      </Modal>
     </>
   );
 };

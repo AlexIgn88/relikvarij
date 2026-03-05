@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Resizer from './resizer';
 import img from './react-logo.png';
-import ComponentInfo from '../component-info/component-info';
+import ComponentInfo from 'src/shared/ui/component-info/component-info';
 
 const Wrapper = () => (
   <ComponentInfo title="Resizer" desc={`При нажатии на зеленый круг можно изменять размеры элементов`}>

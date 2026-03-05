@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import cn from 'clsx';
 import { Select } from 'antd';
 import type { FormikHandlers } from 'formik';
-import { FormItem } from 'src/shared/ui/FormItem';
+import { FormItem } from 'src/shared/ui/form-item';
 import { getValidates } from 'src/utils/validation';
 import s from './category-id-field.module.scss';
 
