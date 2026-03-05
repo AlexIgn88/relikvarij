@@ -3,7 +3,7 @@ import cn from 'clsx';
 import { InputNumber } from 'antd';
 import type { FormikHandlers } from 'formik';
 import { FormItem } from 'src/shared/ui/form-item';
-import { getValidates } from 'src/utils/validation';
+import { getValidates } from 'src/shared/lib/validation';
 import s from './amount-field.scss';
 
 export type AmountFieldProps = {

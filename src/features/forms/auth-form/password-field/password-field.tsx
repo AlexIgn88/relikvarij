@@ -6,7 +6,7 @@ import { LockOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { AuthFormProps } from '../types';
 import { FormItem } from 'src/shared/ui/form-item';
-import { getValidates } from 'src/utils/validation';
+import { getValidates } from 'src/shared/lib/validation';
 import s from './password-field.module.scss';
 
 export type PasswordFieldProps = Pick<AuthFormProps, 'className' | 'disabled'> & {
