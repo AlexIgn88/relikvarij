@@ -1,13 +1,7 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { Product, Operation } from 'src/homeworks/ts1/3_write';
-import {
-  LoadOperationsSuccessResponse,
-  LoadProductsSuccessResponse,
-  NewOperation,
-  NewProduct,
-} from 'src/features/items/items-consts';
+import { LoadProductsSuccessResponse, NewProduct, Product } from 'src/features/items/items-consts';
 import { API, API_BASE_URL, ApiError, LoadPageArg, LOCAL_STORAGE_KEYS, PAGE_SIZE } from 'src/common/common-consts';
 import { THUNK_STATUSES, ThunkStatus } from 'src/store/store-consts';
 import { RootState } from 'src/store/store';
@@ -15,22 +9,16 @@ import { RootState } from 'src/store/store';
 type ItemsState = {
   loadItemsStatus: ThunkStatus;
   products: Product[];
-  operations: Operation[];
   productsPageNumber: number;
   productsTotal: number;
-  operationsPageNumber: number;
-  operationsTotal: number;
   error: string | null;
 };
 
 const initialState: ItemsState = {
   loadItemsStatus: THUNK_STATUSES.DEFAULT,
   products: [],
-  operations: [],
   productsPageNumber: 0,
   productsTotal: 0,
-  operationsPageNumber: 0,
-  operationsTotal: 0,
   error: null,
 };
 
@@ -38,28 +26,13 @@ const itemsSlice = createSlice({
   name: 'items',
   initialState,
   reducers: {
-    // setProducts: (state, action: PayloadAction<Product[]>) => {
-    //   state.products = action.payload;
-    // },
-    // setOperations: (state, action: PayloadAction<Operation[]>) => {
-    //   state.operations = action.payload;
-    // },
     addProduct: (state, action: PayloadAction<Product>) => {
       state.products.push(action.payload);
-    },
-    addOperation: (state, action: PayloadAction<Operation>) => {
-      state.operations.push(action.payload);
     },
     updateProduct: (state, action: PayloadAction<Product>) => {
       const index = state.products.findIndex((p) => p.id === action.payload.id);
       if (index !== -1) {
         state.products[index] = action.payload;
-      }
-    },
-    updateOperation: (state, action: PayloadAction<Operation>) => {
-      const index = state.operations.findIndex((o) => o.id === action.payload.id);
-      if (index !== -1) {
-        state.operations[index] = action.payload;
       }
     },
   },
@@ -81,39 +54,16 @@ const itemsSlice = createSlice({
       })
       .addCase(loadProducts.rejected, (state) => {
         state.loadItemsStatus = THUNK_STATUSES.REJECTED;
-      })
-      .addCase(loadOperations.pending, (state) => {
-        state.loadItemsStatus = THUNK_STATUSES.PENDING;
-      })
-      .addCase(loadOperations.fulfilled, (state, { payload }) => {
-        const { data, pagination } = payload;
-        if (pagination.pageNumber === 1) {
-          state.operations = data;
-        } else {
-          state.operations.push(...data);
-        }
-        state.operationsPageNumber = pagination.pageNumber;
-        state.operationsTotal = pagination.total;
-        state.loadItemsStatus = THUNK_STATUSES.FULFILLED;
-      })
-      .addCase(loadOperations.rejected, (state) => {
-        state.loadItemsStatus = THUNK_STATUSES.REJECTED;
       });
   },
 });
 
-export const {
-  // setProducts, setOperations,
-  addProduct,
-  updateProduct,
-  addOperation,
-  updateOperation,
-} = itemsSlice.actions;
+export const { addProduct, updateProduct } = itemsSlice.actions;
 export default itemsSlice.reducer;
 
 const selectItemsState = (state: RootState) => state.items;
 
-export const selectloadItemsStatus = (state: RootState) => selectItemsState(state).loadItemsStatus;
+export const selectloadItemsStatus = createSelector([selectItemsState], (itemsState) => itemsState.loadItemsStatus);
 
 export const selectProducts = createSelector([selectItemsState], (itemsState) => itemsState.products);
 
@@ -122,40 +72,24 @@ export const selectProductsPagination = createSelector([selectItemsState], (item
   total: itemsState.productsTotal,
 }));
 
-export const selectOperations = createSelector([selectItemsState], (itemsState) => itemsState.operations);
+export const loadProducts = createAsyncThunk<
+  LoadProductsSuccessResponse,
+  LoadPageArg,
+  { state: RootState; rejectValue: ApiError[] }
+>('items/loadProducts', async ({ pageNumber, pageSize = PAGE_SIZE }, { getState, rejectWithValue }) => {
+  const { categoryIds } = getState().categories;
 
-export const selectOperationsPagination = createSelector([selectItemsState], (itemsState) => ({
-  pageNumber: itemsState.operationsPageNumber,
-  total: itemsState.operationsTotal,
-}));
+  const url = `${API_BASE_URL}${API.PRODUCTS}?categoryIds=${JSON.stringify(
+    categoryIds
+  )}&pageNumber=${pageNumber}&pageSize=${pageSize}`;
+  const response = await fetch(url);
+  const result = await response.json();
 
-export const loadProducts = createAsyncThunk<LoadProductsSuccessResponse, LoadPageArg, { rejectValue: ApiError[] }>(
-  'items/loadProducts',
-  async ({ pageNumber, pageSize = PAGE_SIZE }, { rejectWithValue }) => {
-    const url = `${API_BASE_URL}${API.PRODUCTS}?pageNumber=${pageNumber}&pageSize=${pageSize}`;
-    const response = await fetch(url);
-    const result = await response.json();
-
-    if (result.errors) {
-      return rejectWithValue(result.errors as ApiError[]);
-    }
-    return result;
+  if (result.errors) {
+    return rejectWithValue(result.errors as ApiError[]);
   }
-);
-
-export const loadOperations = createAsyncThunk<LoadOperationsSuccessResponse, LoadPageArg, { rejectValue: ApiError[] }>(
-  'items/loadOperations',
-  async ({ pageNumber, pageSize = PAGE_SIZE }, { rejectWithValue }) => {
-    const url = `${API_BASE_URL}${API.OPERATIONS}?pageNumber=${pageNumber}&pageSize=${pageSize}`;
-    const response = await fetch(url);
-    const result = await response.json();
-
-    if (result.errors) {
-      return rejectWithValue(result.errors as ApiError[]);
-    }
-    return result;
-  }
-);
+  return result;
+});
 
 export const addNewProduct = createAsyncThunk<Product, NewProduct, { rejectValue: ApiError[] }>(
   'items/addNewProduct',
@@ -178,30 +112,6 @@ export const addNewProduct = createAsyncThunk<Product, NewProduct, { rejectValue
     }
 
     dispatch(addProduct(result));
-  }
-);
-
-export const addNewOperation = createAsyncThunk<Operation, NewOperation, { rejectValue: ApiError[] }>(
-  'items/addNewOperation',
-  async (data, { dispatch, rejectWithValue }) => {
-    const token = localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN_STORAGE_KEY);
-
-    const response = await fetch(`${API_BASE_URL}${API.OPERATIONS}`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    const result = await response.json();
-
-    if (result.errors) {
-      return rejectWithValue(result.errors as ApiError[]);
-    }
-
-    dispatch(addOperation(result));
   }
 );
 
@@ -228,29 +138,4 @@ export const editProduct = createAsyncThunk<
   }
 
   dispatch(updateProduct(result));
-});
-
-export const editOperation = createAsyncThunk<
-  Operation,
-  { id: string; data: NewOperation },
-  { rejectValue: ApiError[] }
->('items/editOperation', async ({ id, data }, { dispatch, rejectWithValue }) => {
-  const token = localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN_STORAGE_KEY);
-
-  const response = await fetch(`${API_BASE_URL}${API.OPERATIONS}/${id}`, {
-    method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-
-  const result = await response.json();
-
-  if (result.errors) {
-    return rejectWithValue(result.errors as ApiError[]);
-  }
-
-  dispatch(updateOperation(result));
 });

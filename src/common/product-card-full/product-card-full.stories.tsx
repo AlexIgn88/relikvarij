@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import ProductCardFull from './product-card-full';
-import { Product } from 'src/homeworks/ts1/3_write';
+import { Product } from 'src/features/items/items-consts';
 
 const meta: Meta<typeof ProductCardFull> = {
   title: 'Components/ProductCardFull',
@@ -42,19 +42,5 @@ const mockProduct2: Product = {
 export const ProductCardFullStory: Story = {
   args: {
     product: mockProduct1,
-  },
-};
-
-export const WithCustomActions: Story = {
-  args: {
-    product: mockProduct2,
-    actions: [
-      <button key="compare" type="button">
-        Compare
-      </button>,
-      <button key="favorite" type="button">
-        Favorite
-      </button>,
-    ],
   },
 };

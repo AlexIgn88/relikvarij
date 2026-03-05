@@ -4,11 +4,13 @@ import { NavLink } from 'react-router-dom';
 import styles from './navbar.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'src/store/hooks';
+import { selectToken } from 'src/features/auth/auth-slice';
+import { selectUserProfile } from 'src/features/profile/profile-slice';
 
 const Navbar: FC = () => {
   const { t } = useTranslation();
-  const token = useAppSelector((state) => state.auth.token);
-  const profile = useAppSelector((state) => state.profile.profile);
+  const token = useAppSelector(selectToken);
+  const profile = useAppSelector(selectUserProfile);
 
   return (
     <nav className={styles.navbar}>
@@ -28,12 +30,6 @@ const Navbar: FC = () => {
         className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
       >
         {t('navbar.products')}
-      </NavLink>
-      <NavLink
-        to="/operations"
-        className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
-      >
-        {t('navbar.operations')}
       </NavLink>
       {token && profile && (
         <NavLink to="/cart" className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>

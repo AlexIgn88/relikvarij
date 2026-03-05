@@ -1,62 +1,12 @@
-import {
-  Cost,
-  createRandomOperation,
-  createRandomProduct,
-  Operation,
-  Product,
-  Profit,
-} from 'src/homeworks/ts1/3_write';
+import { Product } from 'src/features/items/items-consts';
 
-export const isProduct = (value: unknown): value is Product => {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'id' in value &&
-    'name' in value &&
-    'photo' in value &&
-    'createdAt' in value &&
-    'price' in value &&
-    'category' in value
-  );
+const getRandomNumber = (multiplier = 10000): number => Math.floor(Math.random() * multiplier);
+
+const getRandomName = (names: string[]): string => {
+  return names[getRandomNumber(names.length)];
 };
 
-export const isProductArray = (value: unknown): value is Product[] => {
-  return Array.isArray(value) && value.every(isProduct);
-};
-
-export const isCost = (value: unknown): value is Cost => {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    (value as any).type === 'Cost' &&
-    'id' in value &&
-    'name' in value &&
-    'createdAt' in value &&
-    'amount' in value &&
-    'category' in value
-  );
-};
-
-export const isProfit = (value: unknown): value is Profit => {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    (value as any).type === 'Profit' &&
-    'id' in value &&
-    'name' in value &&
-    'createdAt' in value &&
-    'amount' in value &&
-    'category' in value
-  );
-};
-
-export const isOperation = (value: unknown): value is Operation => {
-  return isCost(value) || isProfit(value);
-};
-
-export const isOperationArray = (value: unknown): value is Operation[] => {
-  return Array.isArray(value) && value.every(isOperation);
-};
+const productNames: string[] = ['cheese', 'sausage', 'chicken'];
 
 export const randomDates = Array.from({ length: 10 }, () => {
   const d = new Date();
@@ -64,5 +14,25 @@ export const randomDates = Array.from({ length: 10 }, () => {
   return d.toISOString();
 });
 
+// Создает случайный продукт (Product).
+// Принимает дату создания (строка)
+const createRandomProduct = (createdAt: string): Product => {
+  const randomName = getRandomName(productNames);
+
+  return {
+    id: getRandomNumber().toString(),
+    name: randomName,
+    photo: `/images/products/${randomName}.png`,
+    desc: '',
+    createdAt: createdAt,
+    oldPrice: getRandomNumber(100),
+    price: getRandomNumber(100),
+    category: {
+      id: '46',
+      name: 'Cheeses & Fats',
+      photo: '/images/categories/cheeses-fats.png',
+    },
+  };
+};
+
 export const products = randomDates.map((date) => createRandomProduct(date));
-export const operations = randomDates.map((date) => createRandomOperation(date));

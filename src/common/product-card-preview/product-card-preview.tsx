@@ -4,7 +4,7 @@ import s from './product-card-preview.module.scss';
 import AddToCart from '../add-to-cart/add-to-cart';
 import { useAppSelector, useAppDispatch } from 'src/store/hooks';
 import { addToCart, updateQuantity } from 'src/features/cart/cart-slice';
-import { Product } from 'src/homeworks/ts1/3_write';
+import { Product } from 'src/features/items/items-consts';
 import DeleteProduct from '../delete-product/delete-product';
 
 type Props = {
@@ -50,7 +50,7 @@ const ProductCardPreview: FC<Props> = ({ product, defaultCount = 0, actions, ima
         <h3 className={s.name}>{name}</h3>
         <p className={s.description}>{description}</p>
         <div className={s.footer}>
-          <span className={s.price}>${price}</span>
+          <span className={s.price}>₽&nbsp;{price}</span>
           <div className={s.actions}>{mergedActions}</div>
         </div>
       </div>

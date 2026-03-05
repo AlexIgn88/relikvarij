@@ -1,26 +1,20 @@
 import React, { FC, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { Operation, Product } from 'src/homeworks/ts1/3_write';
+import { Product } from 'src/features/items/items-consts';
 import s from './items-list.module.scss';
 import ProductCardPreview from '../../../common/product-card-preview/product-card-preview';
 import ProductCardFull from '../../../common/product-card-full/product-card-full';
-import OperationCardPreview from '../../../common/operation-card-preview/operation-card-preview';
-import OperationCardFull from '../../../common/operation-card-full/operation-card-full';
 import { Mode } from './items-list-consts';
 
-type RenderItem = (params: { item: Product | Operation; index: number; mode: Mode }) => ReactNode;
+type RenderItem = (params: { item: Product; index: number; mode: Mode }) => ReactNode;
 
 type Props = {
-  data: Product[] | Operation[];
+  data: Product[];
   mode: Mode.full | Mode.preview;
   renderItem?: RenderItem;
-  emptyState?: ReactNode | (() => ReactNode);
   listProps?: React.HTMLAttributes<HTMLDivElement>;
   onLoadMore?: () => void;
 };
-
-const isProductItem = (item: Product | Operation): item is Product => 'price' in item;
-const isOperationItem = (item: Product | Operation): item is Operation => 'amount' in item;
 
 const toProductPreviewProps = (product: Product) => ({
   product,
@@ -30,19 +24,8 @@ const toProductFullProps = (product: Product) => ({
   product,
 });
 
-const toOperationPreviewProps = (operation: Operation) => ({
-  sum: operation.amount,
-  categoryName: operation.category.name,
-  name: operation.name,
-  description: operation.desc,
-});
-
-const toOperationFullProps = (operation: Operation) => ({
-  operation,
-});
-
-const ItemsList: FC<Props> = ({ data, mode, renderItem, emptyState, listProps, onLoadMore }) => {
-  const [items, setItems] = useState<(Product | Operation)[]>(data);
+const ItemsList: FC<Props> = ({ data, mode, renderItem, listProps, onLoadMore }) => {
+  const [items, setItems] = useState<Product[]>(data);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -60,29 +43,18 @@ const ItemsList: FC<Props> = ({ data, mode, renderItem, emptyState, listProps, o
   );
 
   const defaultRenderer = useCallback(
-    (item: Product | Operation) => {
-      if (isProductItem(item)) {
-        return mode === Mode.preview ? (
-          <ProductCardPreview {...toProductPreviewProps(item)} />
-        ) : (
-          <ProductCardFull {...toProductFullProps(item)} />
-        );
-      }
-      if (isOperationItem(item)) {
-        return mode === Mode.preview ? (
-          <OperationCardPreview {...toOperationPreviewProps(item)} />
-        ) : (
-          <OperationCardFull {...toOperationFullProps(item)} />
-        );
-      }
-
-      return null;
+    (item: Product) => {
+      return mode === Mode.preview ? (
+        <ProductCardPreview {...toProductPreviewProps(item)} />
+      ) : (
+        <ProductCardFull {...toProductFullProps(item)} />
+      );
     },
     [mode]
   );
 
   const resolvedRenderer = useCallback(
-    (item: Product | Operation, index: number) => {
+    (item: Product, index: number) => {
       if (renderItem) {
         return renderItem({ item, index, mode });
       }
