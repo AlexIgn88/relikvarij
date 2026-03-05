@@ -3,10 +3,10 @@ import logo from 'src/app/logo.svg';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'src/store/hooks';
 
-import s from './home-screen.module.scss';
+import s from './home-page.module.scss';
 import LoginLinks from 'src/common/login-links/login-links';
 
-const HomeScreen: FC = () => {
+const HomePage: FC = () => {
   const { t } = useTranslation();
 
   const token = useAppSelector((state) => state.auth.token);
@@ -32,4 +32,4 @@ const HomeScreen: FC = () => {
   );
 };
 
-export default HomeScreen;
+export default HomePage;

@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import s from 'src/pages/signup-screen/signup-screen.module.scss';
+import s from 'src/pages/signup-page/signup-page.module.scss';
 import { Formik } from 'formik';
 import AuthForm from 'src/features/forms/auth-form/auth-form';
 // import { useTranslation } from 'react-i18next';
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { selectAuthErrorMessages, signup } from 'src/features/auth/auth-slice';
 import { authFormValidate, initialAuthFormValues } from 'src/features/forms/forms-consts';
 
-const SignupScreen: FC = () => {
+const SignupPage: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   // const { t } = useTranslation();
@@ -47,4 +47,4 @@ const SignupScreen: FC = () => {
   );
 };
 
-export default SignupScreen;
+export default SignupPage;

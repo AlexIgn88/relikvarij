@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import s from 'src/pages/home-screen/home-screen.module.scss';
+import s from 'src/pages/home-page/home-page.module.scss';
 import { Formik } from 'formik';
 import AuthForm from 'src/features/forms/auth-form/auth-form';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { selectAuthErrorMessages, signin } from 'src/features/auth/auth-slice';
 import { authFormValidate, initialAuthFormValues } from 'src/features/forms/forms-consts';
 
-const LoginScreen: FC = () => {
+const LoginPage: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const formElementRef = useRef<HTMLFormElement>(null);
@@ -44,4 +44,4 @@ const LoginScreen: FC = () => {
   );
 };
 
-export default LoginScreen;
+export default LoginPage;

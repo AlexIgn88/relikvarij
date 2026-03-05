@@ -3,37 +3,37 @@ import './App.css';
 
 import { APP_ROUTES } from 'src/app/routes';
 import Layout from 'src/common/layout/layout';
-import HomeScreen from 'src/pages/home-screen/home-screen';
-import ProfileScreen from 'src/pages/profile-screen/profile-screen';
+import HomePage from 'src/pages/home-page/home-page';
+import ProfilePage from 'src/pages/profile-page/profile-page';
 import { Route, Routes } from 'react-router-dom';
-import ItemsScreen from 'src/pages/items-screen/items-screen';
-import ShoppingCartScreen from 'src/pages/shopping-cart-screen/shopping-cart-screen';
+import ItemsPage from 'src/pages/items-page/items-page';
+import ShoppingCartPage from 'src/pages/shopping-cart-page/shopping-cart-page';
 import ProtectedRoute from './protected-route';
-import LoginScreen from 'src/pages/login-screen/login-screen';
-import SignupScreen from 'src/pages/signup-screen/signup-screen';
+import LoginPage from 'src/pages/login-page/login-page';
+import SignupPage from 'src/pages/signup-page/signup-page';
 
 function App() {
   return (
     <div className="App">
       <Layout>
         <Routes>
-          <Route path={APP_ROUTES.INDEX} element={<HomeScreen />} />
-          <Route path={APP_ROUTES.LOGIN} element={<LoginScreen />} />
-          <Route path={APP_ROUTES.SIGNUP} element={<SignupScreen />} />
+          <Route path={APP_ROUTES.INDEX} element={<HomePage />} />
+          <Route path={APP_ROUTES.LOGIN} element={<LoginPage />} />
+          <Route path={APP_ROUTES.SIGNUP} element={<SignupPage />} />
           <Route
             path={APP_ROUTES.PROFILE}
             element={
               <ProtectedRoute>
-                <ProfileScreen />
+                <ProfilePage />
               </ProtectedRoute>
             }
           />
-          <Route path={APP_ROUTES.PRODUCTS} element={<ItemsScreen />} />
+          <Route path={APP_ROUTES.PRODUCTS} element={<ItemsPage />} />
           <Route
             path={APP_ROUTES.CART}
             element={
               <ProtectedRoute>
-                <ShoppingCartScreen />
+                <ShoppingCartPage />
               </ProtectedRoute>
             }
           />

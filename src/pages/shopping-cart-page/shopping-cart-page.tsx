@@ -4,7 +4,7 @@ import ItemsList from 'src/features/items/items-list/items-list';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import ProductCardPreview from 'src/common/product-card-preview/product-card-preview';
 import { useTranslation } from 'react-i18next';
-import s from './shopping-cart-screen.modele.scss';
+import s from './shopping-cart-page.modele.scss';
 
 import {
   clearCart,
@@ -15,7 +15,7 @@ import {
 } from 'src/features/cart/cart-slice';
 import { THUNK_STATUSES } from 'src/store/store-consts';
 
-const ShoppingCartScreen: FC = () => {
+const ShoppingCartPage: FC = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
@@ -73,4 +73,4 @@ const ShoppingCartScreen: FC = () => {
   );
 };
 
-export default ShoppingCartScreen;
+export default ShoppingCartPage;
