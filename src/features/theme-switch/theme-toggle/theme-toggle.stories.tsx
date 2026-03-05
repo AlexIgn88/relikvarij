@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Layout from './layout';
-import { ThemeProvider } from '../../app/theming/theme-provider';
-import LanguageProvider from '../../app/localization/language-provider';
+import ThemeToggle from './theme-toggle';
+import { ThemeProvider } from '../../../app/theming/theme-provider';
+import LanguageProvider from '../../../app/localization/language-provider';
 import React from 'react';
-import '../../app/App.css';
+import '../../../app/App.css';
 
-const meta: Meta<typeof Layout> = {
-  title: 'Components/Layout (with i18n + theme)',
-  component: Layout,
+const meta: Meta<typeof ThemeToggle> = {
+  title: 'Components/ThemeToggle',
+  component: ThemeToggle,
   decorators: [
     (Story) => (
       <LanguageProvider>

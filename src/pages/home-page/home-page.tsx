@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'src/store/hooks';
 
 import s from './home-page.module.scss';
-import LoginLinks from 'src/common/login-links/login-links';
+import LoginLinks from 'src/features/auth/login-links/login-links';
 
 const HomePage: FC = () => {
   const { t } = useTranslation();

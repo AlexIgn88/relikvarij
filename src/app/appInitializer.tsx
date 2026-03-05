@@ -1,8 +1,8 @@
 import React, { useEffect, ReactNode } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { loadTokenFromStorage } from '../features/auth/auth-thunks';
-import { loadProducts } from '../features/items/items-slice';
-import { loadCategories, selectCategories } from 'src/features/categories/categories-slice';
+import { loadProducts } from '../entities/product/items-slice';
+import { loadCategories, selectCategories } from 'src/entities/categories/categories-slice';
 
 type Props = {
   children: ReactNode;

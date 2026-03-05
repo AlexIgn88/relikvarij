@@ -8,9 +8,9 @@ import {
   FormikContext,
 } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { selectProducts, editProduct } from 'src/features/items/items-slice';
+import { selectProducts, editProduct } from 'src/entities/product/items-slice';
 
-import { NewProduct, Product } from 'src/features/items/items-consts';
+import { NewProduct, Product } from 'src/entities/product/items-consts';
 
 import { ProductFormValues } from 'src/features/items/item-form-modal-create/item-form-modal-consts';
 

@@ -1,4 +1,4 @@
-import { Product } from 'src/features/items/items-consts';
+import { Product } from 'src/entities/product/items-consts';
 
 const getRandomNumber = (multiplier = 10000): number => Math.floor(Math.random() * multiplier);
 

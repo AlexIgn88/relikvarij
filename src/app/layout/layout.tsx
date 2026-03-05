@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Header from '../header/header';
+import Header from 'src/widgets/header/header';
 
 type Props = {
   children: React.ReactNode;

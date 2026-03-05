@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Mode } from 'src/features/items/items-list/items-list-consts';
-import ItemsList from 'src/features/items/items-list/items-list';
+import { Mode } from 'src/entities/product/items-list/items-list-consts';
+import ItemsList from 'src/entities/product/items-list/items-list';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import ProductCardPreview from 'src/common/product-card-preview/product-card-preview';
+import ProductCardPreview from 'src/entities/product/product-card-preview/product-card-preview';
 import { useTranslation } from 'react-i18next';
 import s from './shopping-cart-page.modele.scss';
 

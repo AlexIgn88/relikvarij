@@ -1,4 +1,4 @@
-import { Profile } from 'src/features/profile/profile-consts';
+import { Profile } from 'src/entities/profile/profile-consts';
 
 export type SignUpBody = {
   email: string;

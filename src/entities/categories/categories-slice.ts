@@ -1,5 +1,5 @@
 import { THUNK_STATUSES, ThunkStatus } from 'src/store/store-consts';
-import { Category, LoadCategoriesSuccessResponse } from 'src/features/categories/categories-consts';
+import { Category, LoadCategoriesSuccessResponse } from 'src/entities/categories/categories-consts';
 import { RootState } from 'src/store/store';
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { API, API_BASE_URL, ApiError, COMMAND_ID } from 'src/common/common-consts';

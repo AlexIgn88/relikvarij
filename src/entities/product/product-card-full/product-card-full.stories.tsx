@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import ProductCardFull from './product-card-full';
-import { Product } from 'src/features/items/items-consts';
+import { Product } from 'src/entities/product/items-consts';
 
 const meta: Meta<typeof ProductCardFull> = {
   title: 'Components/ProductCardFull',

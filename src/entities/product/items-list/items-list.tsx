@@ -1,9 +1,9 @@
 import React, { FC, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { Product } from 'src/features/items/items-consts';
+import { Product } from 'src/entities/product/items-consts';
 import s from './items-list.module.scss';
-import ProductCardPreview from '../../../common/product-card-preview/product-card-preview';
-import ProductCardFull from '../../../common/product-card-full/product-card-full';
+import ProductCardPreview from 'src/entities/product/product-card-preview/product-card-preview';
+import ProductCardFull from 'src/entities/product/product-card-full/product-card-full';
 import { Mode } from './items-list-consts';
 
 type RenderItem = (params: { item: Product; index: number; mode: Mode }) => ReactNode;

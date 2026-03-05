@@ -14,7 +14,7 @@ import s from './product-operation-form.module.scss';
 import formStyle from 'src/features/forms/form.module.scss';
 import { AdminActionType } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { useAppSelector } from 'src/store/hooks';
-import { selectCategories } from 'src/features/categories/categories-slice';
+import { selectCategories } from 'src/entities/categories/categories-slice';
 
 const ProductOperationForm = memo<ProductOperationFormProps>(
   ({ className, formManager, formElement, autoFocusElement, disabled, mode }) => {

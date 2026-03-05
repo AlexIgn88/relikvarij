@@ -1,4 +1,4 @@
-import { Product } from 'src/features/items/items-consts';
+import { Product } from 'src/entities/product/items-consts';
 
 export type CartItem = {
   product: Product;

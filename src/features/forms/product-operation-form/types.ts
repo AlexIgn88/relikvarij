@@ -1,5 +1,5 @@
 import { FormProps } from 'src/features/forms/types';
-import { Product } from 'src/features/items/items-consts';
+import { Product } from 'src/entities/product/items-consts';
 
 export type FormMode = 'createProduct' | 'editProduct' | 'createOperation' | 'editOperation';
 

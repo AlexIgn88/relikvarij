@@ -5,7 +5,7 @@ import styles from './navbar.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'src/store/hooks';
 import { selectToken } from 'src/features/auth/auth-slice';
-import { selectUserProfile } from 'src/features/profile/profile-slice';
+import { selectUserProfile } from 'src/entities/profile/profile-slice';
 
 const Navbar: FC = () => {
   const { t } = useTranslation();

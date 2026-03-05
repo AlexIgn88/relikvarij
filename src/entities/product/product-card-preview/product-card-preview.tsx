@@ -1,11 +1,11 @@
 import React, { FC, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
 import s from './product-card-preview.module.scss';
-import AddToCart from '../add-to-cart/add-to-cart';
+import AddToCart from 'src/features/cart/add-to-cart/add-to-cart';
 import { useAppSelector, useAppDispatch } from 'src/store/hooks';
 import { addToCart, updateQuantity } from 'src/features/cart/cart-slice';
-import { Product } from 'src/features/items/items-consts';
-import DeleteProduct from '../delete-product/delete-product';
+import { Product } from 'src/entities/product/items-consts';
+import DeleteProduct from 'src/features/cart/delete-product/delete-product';
 
 type Props = {
   product: Product;
