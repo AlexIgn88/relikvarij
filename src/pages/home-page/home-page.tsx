@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import logo from 'src/app/logo.svg';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'src/store/hooks';
 
@@ -14,19 +13,21 @@ const HomePage: FC = () => {
 
   if (token && profile) {
     return (
-      <main>
-        <img src={logo} className="App-logo" alt="logo" />
-        <div>
-          <p className={s.welcomeText}>{t('screens.home.welcomeText', { name: profile.email })}</p>
-          <p>{t('screens.home.intro')}</p>
-        </div>
+      <main className={s.main}>
+        <section className={s.hero}>
+          <div className={s.heroOverlay} />
+          <div className={s.heroContent}>
+            <h1 className={s.heroTitle}>{t('screens.home.welcomeText')}</h1>
+            <div className={s.heroLine} aria-hidden />
+            <p className={s.heroIntro}>{t('screens.home.intro', { name: profile.email })}</p>
+          </div>
+        </section>
       </main>
     );
   }
 
   return (
     <main>
-      <img src={logo} className="App-logo" alt="logo" />
       <LoginLinks className={s.links} />
     </main>
   );

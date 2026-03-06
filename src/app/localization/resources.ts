@@ -19,12 +19,12 @@ export const resources = {
       screens: {
         home: {
           intro: `
-          Welcome to "Antique Courtyard" – an online shop for rare and collectible treasures.  
+          Welcome, {{name}}, to "Antique Courtyard" – an online shop for rare and collectible treasures.  
           Here you will find carefully curated antiques, vintage décor, and unique pieces with their own stories.  
           Browse our catalog, add special finds to your cart, and easily track all operations with your collection.  
           We thoughtfully design the interface so that every visit feels cozy and every purchase is a small journey into history.
         `,
-          welcomeText: 'Welcome, {{name}}!',
+          welcomeText: 'Online shop "Antique Courtyard"',
         },
         profile: {
           profileInfo: 'Profile Information',
@@ -87,12 +87,12 @@ export const resources = {
       screens: {
         home: {
           intro: `
-          Добро пожаловать в интернет-магазин «Антикварный Дворик» — пространство редких вещей и коллекционных сокровищ.  
+          Добро пожаловать, {{name}}, в интернет-магазин «Антикварный Дворик» — пространство редких вещей и коллекционных сокровищ.  
           Здесь вас ждут тщательно отобранные антиквариат, винтажный декор и уникальные предметы с собственной историей.  
           Просматривайте каталог, добавляйте находки в корзину и удобно отслеживайте все операции со своей коллекцией.  
           Мы заботимся о том, чтобы каждый визит был атмосферным, а каждая покупка — маленьким путешествием в прошлое.
         `,
-          welcomeText: 'Добро пожаловать, {{name}}!',
+          welcomeText: 'Интернет-магазин «Антикварный Дворик»',
         },
         profile: {
           profileInfo: 'Информация о профиле',
