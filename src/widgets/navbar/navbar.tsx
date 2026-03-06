@@ -17,14 +17,6 @@ const Navbar: FC = () => {
       <NavLink to="/" className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>
         {t('navbar.main')}
       </NavLink>
-      {token && profile && (
-        <NavLink
-          to="/profile"
-          className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
-        >
-          {t('navbar.profile')}
-        </NavLink>
-      )}
       <NavLink
         to="/products"
         className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
@@ -34,6 +26,14 @@ const Navbar: FC = () => {
       {token && profile && (
         <NavLink to="/cart" className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>
           {t('navbar.cart')}
+        </NavLink>
+      )}
+      {token && profile && (
+        <NavLink
+          to="/profile"
+          className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
+        >
+          {t('navbar.profile')}
         </NavLink>
       )}
     </nav>
