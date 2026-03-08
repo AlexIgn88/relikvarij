@@ -38,6 +38,8 @@ export const resources = {
           empty: 'Your cart is empty',
           order: 'Order',
           clear: 'Clear',
+          itemsCount: '{{count}} item(s) in cart',
+          totalPrice: 'Total: ₽ {{price}}',
         },
         items: {
           buttons: {
@@ -112,6 +114,8 @@ export const resources = {
           empty: 'Ваша корзина пуста',
           order: 'Заказать',
           clear: 'Очистить',
+          itemsCount: 'Товаров в корзине: {{count}}',
+          totalPrice: 'Итого: ₽ {{price}}',
         },
         items: {
           buttons: {

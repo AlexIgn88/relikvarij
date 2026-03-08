@@ -11,6 +11,8 @@ import {
   clearCart,
   createOrder,
   selectCartItems,
+  selectCartTotalPrice,
+  selectCartTotalQuantity,
   selectloadItemsStatus,
   selectProducts,
 } from 'src/entities/cart/cart-slice';
@@ -22,6 +24,8 @@ const ShoppingCartPage: FC = () => {
 
   const products = useAppSelector(selectProducts);
   const cartItems = useAppSelector(selectCartItems);
+  const totalPrice = useAppSelector(selectCartTotalPrice);
+  const totalQuantity = useAppSelector(selectCartTotalQuantity);
   const loadItemsStatus = useAppSelector(selectloadItemsStatus);
 
   const handleCreateOrder = () => {
@@ -58,6 +62,10 @@ const ShoppingCartPage: FC = () => {
   return (
     <main>
       <div className={s.cartControlButtonsPanel}>
+        <div className={s.cartSummary}>
+          <span>{t('screens.cart.itemsCount', { count: totalQuantity })}</span>
+          <span>{t('screens.cart.totalPrice', { price: totalPrice.toLocaleString('ru-RU') })}</span>
+        </div>
         <button type="button" className={clsx(s.cartControlButtons, s.orderButton)} onClick={handleCreateOrder}>
           {t('screens.cart.order')}
         </button>

@@ -72,6 +72,14 @@ export const selectCartItems = createSelector([selectCartState], (cartState) => 
 
 export const selectProducts = createSelector([selectCartItems], (cartItems) => cartItems.map((item) => item.product));
 
+export const selectCartTotalPrice = createSelector([selectCartItems], (cartItems) =>
+  cartItems.reduce((total, item) => total + item.product.price * item.quantity, 0)
+);
+
+export const selectCartTotalQuantity = createSelector([selectCartItems], (cartItems) =>
+  cartItems.reduce((sum, item) => sum + item.quantity, 0)
+);
+
 export const createOrder = createAsyncThunk<CreateOrderSuccessResponse, ProductsForOrder, { rejectValue: ApiError[] }>(
   'cart/createOrder',
   async (productsForOrder, { dispatch, rejectWithValue }) => {

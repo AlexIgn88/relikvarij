@@ -25,8 +25,24 @@
 
 .cartControlButtonsPanel {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cartSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 200px;
+
+  span:last-child {
+    font-size: 1.1rem;
+    color: #1e2228;
+  }
 }
 
 .cartControlButtons {
