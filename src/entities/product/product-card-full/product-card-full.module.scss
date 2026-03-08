@@ -59,10 +59,20 @@
   margin-top: 12px;
 }
 
+.price,
+.oldPrice {
+  font-weight: 700;
+}
+
 .price {
   font-size: 20px;
-  font-weight: 700;
   color: #111827;
+}
+
+.oldPrice {
+  font-size: 16px;
+  color: red;
+  text-decoration: line-through;
 }
 
 .actions {

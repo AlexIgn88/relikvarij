@@ -38,7 +38,7 @@ const ProductCardFull: FC<Props> = ({ product, defaultCount }) => {
     return null;
   }
 
-  const { id, name, desc: description, price, photo: image, category } = product;
+  const { id, name, desc: description, price, oldPrice, photo: image, category } = product;
 
   return (
     <div className={s.card}>
@@ -49,8 +49,14 @@ const ProductCardFull: FC<Props> = ({ product, defaultCount }) => {
         <p className={s.description}>{description}</p>
       </div>
       <div className={s.footer}>
-        <div className={s.price}>
-          {moneySign}&nbsp;{price}
+        <div>
+          <span className={s.oldPrice}>
+            {moneySign}&nbsp;{oldPrice}
+          </span>
+          &nbsp;
+          <span className={s.price}>
+            {moneySign}&nbsp;{price}
+          </span>
         </div>
         {token && profile && (
           <div className={s.actions}>
