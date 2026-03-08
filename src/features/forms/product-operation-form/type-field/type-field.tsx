@@ -2,8 +2,8 @@ import React, { memo } from 'react';
 import cn from 'clsx';
 import { Select } from 'antd';
 import type { FormikHandlers } from 'formik';
-import { FormItem } from 'src/shared/ui/FormItem';
-import { getValidates } from 'src/utils/validation';
+import { FormItem } from 'src/shared/ui/form-item';
+import { getValidates } from 'src/shared/lib/validation';
 import s from './type-field.module.scss';
 
 export type TypeFieldProps = {

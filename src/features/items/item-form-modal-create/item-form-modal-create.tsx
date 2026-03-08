@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useMemo } from 'react';
-import ModalWindow from 'src/common/modal-window/modal-window';
+import Modal from 'src/shared/ui/modal/modal';
 import ProductOperationForm from 'src/features/forms/product-operation-form/product-operation-form';
 import { Formik } from 'formik';
 import { createValidate, getEmptyValues } from 'src/features/forms/product-operation-form/product-operation-form-utils';
@@ -8,9 +8,9 @@ import {
   FormikContext,
 } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { selectProducts, addNewProduct } from 'src/features/items/items-slice';
+import { selectProducts, addNewProduct } from 'src/entities/product/items-slice';
 
-import { NewProduct, Product } from 'src/features/items/items-consts';
+import { NewProduct, Product } from 'src/entities/product/items-consts';
 import { ProductFormValues } from 'src/features/items/item-form-modal-create/item-form-modal-consts';
 
 type Props = {
@@ -75,7 +75,7 @@ const ItemFormModalCreate: FC<Props> = ({ mode, itemId, onClose }) => {
 
   return (
     <div>
-      <ModalWindow visible={true} setVisible={onClose}>
+      <Modal visible={true} setVisible={onClose}>
         <Formik
           initialValues={initialValues}
           validate={createValidate(mode)}
@@ -91,7 +91,7 @@ const ItemFormModalCreate: FC<Props> = ({ mode, itemId, onClose }) => {
             />
           )}
         </Formik>
-      </ModalWindow>
+      </Modal>
     </div>
   );
 };

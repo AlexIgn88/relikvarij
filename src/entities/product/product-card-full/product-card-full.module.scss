@@ -1,0 +1,108 @@
+.card {
+  padding: 20px 10px;
+  background: linear-gradient(145deg, #ffffff, #f3f4f6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category {
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.description {
+  color: #374151;
+  font-size: 15px;
+  line-height: 1.6;
+  max-height: 150px;
+  overflow: auto;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.price,
+.oldPrice {
+  font-weight: 700;
+}
+
+.price {
+  font-size: 20px;
+  color: #111827;
+}
+
+.oldPrice {
+  font-size: 16px;
+  color: red;
+  text-decoration: line-through;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.editButton {
+  width: 185px;
+  background: linear-gradient(145deg, #2a2f37, #1e2228);
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+
+  &:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+}
