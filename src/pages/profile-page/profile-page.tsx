@@ -16,7 +16,6 @@ const ProfilePage: FC = () => {
   const profileInitialValues = useMemo(() => {
     if (profile) {
       return {
-        // name: profile.name,
         email: profile.email,
       };
     }
@@ -28,11 +27,9 @@ const ProfilePage: FC = () => {
       {profile && (
         <div className={s.profileInfo}>
           <h2>{t('screens.profile.profileInfo')}</h2>
-          {/*<p>{t('screens.profile.name')}: {profile.name}</p>*/}
           <p>
             {t('screens.profile.email')}: {profile.email}
           </p>
-          {/*<p>{t('screens.profile.role')}: {profile.role}</p>*/}
         </div>
       )}
       <Formik

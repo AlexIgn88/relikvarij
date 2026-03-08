@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
-  gap: 20px;
+  gap: 100px;
+  justify-content: space-around;
   padding: 14px 24px;
   font-family: 'Inter', sans-serif;
 }

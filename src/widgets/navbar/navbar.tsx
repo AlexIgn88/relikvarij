@@ -28,14 +28,6 @@ const Navbar: FC = () => {
           {t('navbar.cart')}
         </NavLink>
       )}
-      {token && profile && (
-        <NavLink
-          to="/profile"
-          className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
-        >
-          {t('navbar.profile')}
-        </NavLink>
-      )}
     </nav>
   );
 };
