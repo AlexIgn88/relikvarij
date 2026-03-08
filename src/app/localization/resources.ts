@@ -25,6 +25,8 @@ export const resources = {
           We thoughtfully design the interface so that every visit feels cozy and every purchase is a small journey into history.
         `,
           welcomeText: 'Online shop "Antique Courtyard"',
+          signup: 'Signup',
+          login: 'Login',
         },
         profile: {
           profileInfo: 'Profile Information',
@@ -53,6 +55,7 @@ export const resources = {
             title: 'Password',
             placeholder: 'Enter password',
           },
+          submit: 'Submit',
         },
         ProfileForm: {
           name: {
@@ -93,6 +96,8 @@ export const resources = {
           Мы заботимся о том, чтобы каждый визит был атмосферным, а каждая покупка — маленьким путешествием в прошлое.
         `,
           welcomeText: 'Интернет-магазин «Антикварный Дворик»',
+          signup: 'Регистрация',
+          login: 'Вход',
         },
         profile: {
           profileInfo: 'Информация о профиле',
@@ -121,6 +126,7 @@ export const resources = {
             title: 'Пароль',
             placeholder: 'Укажите пароль',
           },
+          submit: 'Отправить',
         },
         ProfileForm: {
           name: {

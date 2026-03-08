@@ -1,4 +1,5 @@
 import React, { FC, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import s from './login-page.module.scss';
 import { Formik } from 'formik';
 import AuthForm from 'src/features/forms/auth-form/auth-form';
@@ -10,6 +11,7 @@ import { authFormValidate, initialAuthFormValues } from 'src/features/forms/form
 const LoginPage: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const formElementRef = useRef<HTMLFormElement>(null);
   const autoFocusElementRef = useRef(null);
 
@@ -19,7 +21,7 @@ const LoginPage: FC = () => {
     <main>
       <div className={s.welcomeText}>
         <div className={s.welcomeTextContainer}>
-          <h2>Login</h2>
+          <h2>{t('screens.home.login')}</h2>
           <Formik
             initialValues={initialAuthFormValues}
             validate={authFormValidate}

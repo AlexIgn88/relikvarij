@@ -75,7 +75,9 @@
   gap: 20px;
 
   li {
-    border-bottom: 1px solid black;
+    text-decoration: underline;
+    text-decoration-thickness: 0.9px;
+    text-underline-offset: 0.22em;
     transition: transform 0.25s ease, color 0.25s ease;
 
     &:hover {

@@ -2,7 +2,7 @@ import React, { FC, useRef } from 'react';
 import s from 'src/pages/signup-page/signup-page.module.scss';
 import { Formik } from 'formik';
 import AuthForm from 'src/features/forms/auth-form/auth-form';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { selectAuthErrorMessages, signup } from 'src/features/auth/auth-slice';
@@ -11,7 +11,7 @@ import { authFormValidate, initialAuthFormValues } from 'src/features/forms/form
 const SignupPage: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const formElementRef = useRef<HTMLFormElement>(null);
   const autoFocusElementRef = useRef(null);
@@ -22,7 +22,7 @@ const SignupPage: FC = () => {
     <main>
       <div className={s.welcomeText}>
         <div className={s.welcomeTextContainer}>
-          <h2>Signup</h2>
+          <h2>{t('screens.home.signup')}</h2>
           <Formik
             initialValues={initialAuthFormValues}
             validate={authFormValidate}
