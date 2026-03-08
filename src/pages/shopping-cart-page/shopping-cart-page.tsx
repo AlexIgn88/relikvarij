@@ -59,10 +59,10 @@ const ShoppingCartPage: FC = () => {
     <main>
       <div className={s.cartControlButtonsPanel}>
         <button type="button" className={clsx(s.cartControlButtons, s.orderButton)} onClick={handleCreateOrder}>
-          Заказать
+          {t('screens.cart.order')}
         </button>
         <button type="button" className={clsx(s.cartControlButtons, s.clearCartButton)} onClick={handleClearCart}>
-          Очистить корзину
+          {t('screens.cart.clear')}
         </button>
       </div>
       <ItemsList data={products} mode={Mode.preview} renderItem={renderItem} />

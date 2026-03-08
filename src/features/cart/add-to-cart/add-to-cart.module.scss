@@ -7,28 +7,26 @@
 
 .addButton {
   width: 185px;
-  background: linear-gradient(145deg, #2b3a28, #1e271e);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  color: #86efac;
+  background: linear-gradient(145deg, #2a2f37, #1e2228);
+  border: none;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase;
   padding: 12px 28px;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 
   &:hover {
-    background: linear-gradient(145deg, #265326, #1a2b1a);
-    border-color: rgba(34, 197, 94, 0.5);
-    color: #bbf7d0;
+    color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.25), inset 0 0 10px rgba(34, 197, 94, 0.2);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
   }
 
   &:active {
-    transform: scale(0.97);
+    transform: translateY(1px);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
   }
 }
 

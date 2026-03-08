@@ -36,6 +36,8 @@ export const resources = {
         },
         cart: {
           empty: 'Your cart is empty',
+          order: 'Order',
+          clear: 'Clear',
         },
         items: {
           buttons: {
@@ -108,6 +110,8 @@ export const resources = {
         },
         cart: {
           empty: 'Ваша корзина пуста',
+          order: 'Заказать',
+          clear: 'Очистить',
         },
         items: {
           buttons: {
