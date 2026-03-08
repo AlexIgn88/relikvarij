@@ -33,11 +33,7 @@ const ShoppingCartPage: FC = () => {
   const handleClearCart = () => dispatch(clearCart());
 
   const renderItem = ({ item }: { item: any }) => {
-    return (
-      <div className={s.item}>
-        <ProductCardPreview product={item} />
-      </div>
-    );
+    return <ProductCardPreview product={item} />;
   };
 
   if (loadItemsStatus === THUNK_STATUSES.FULFILLED) {

@@ -49,11 +49,13 @@ const ProductCardFull: FC<Props> = ({ product, defaultCount, imageProps }) => {
         <h2 className={s.name}>{name}</h2>
         <p className={s.description}>{description}</p>
         <div className={s.footer}>
-          <span className={s.price}>₽&nbsp;{price}</span>
+          <div className={s.price}>₽&nbsp;{price}</div>
           {token && profile && (
             <div className={s.actions}>
               <AddToCart key="add-to-cart" count={quantity} onChange={handleQuantityChange} />
-              <button onClick={() => navigate(`/products?modal=edit&id=${id}`)}>{t('screens.items.buttons.edit')}</button>
+              <button onClick={() => navigate(`/products?modal=edit&id=${id}`)}>
+                {t('screens.items.buttons.edit')}
+              </button>
             </div>
           )}
         </div>

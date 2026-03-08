@@ -79,6 +79,10 @@
     text-decoration-thickness: 0.9px;
     text-underline-offset: 0.22em;
     transition: transform 0.25s ease, color 0.25s ease;
+    background-color: #cfcfcf;
+    border-radius: 15px;
+    padding: 10px;
+    opacity: 0.9;
 
     &:hover {
       transform: translateY(-2px);

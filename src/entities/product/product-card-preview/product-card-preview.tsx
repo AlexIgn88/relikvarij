@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useMemo } from 'react';
+import React, { FC, ReactNode, useCallback, useMemo } from 'react';
 import clsx from 'clsx';
 import s from './product-card-preview.module.scss';
 import AddToCart from 'src/features/cart/add-to-cart/add-to-cart';
@@ -19,17 +19,16 @@ const ProductCardPreview: FC<Props> = ({ product, defaultCount = 0, actions, ima
   const cartItem = useAppSelector((state) => state.cart.items.find((item) => item.product?.id === product?.id));
   const quantity = cartItem?.quantity ?? defaultCount;
 
-  const handleQuantityChange = (newQuantity: number) => {
-    if (cartItem) {
-      dispatch(updateQuantity({ productId: product.id, quantity: newQuantity }));
-    } else if (newQuantity > 0) {
-      dispatch(addToCart(product));
-    }
-  };
-
-  // const handleAddToCart = () => {
-  //   dispatch(addToCart(product));
-  // };
+  const handleQuantityChange = useCallback(
+    (newQuantity: number) => {
+      if (cartItem) {
+        dispatch(updateQuantity({ productId: product.id, quantity: newQuantity }));
+      } else if (newQuantity > 0) {
+        dispatch(addToCart(product));
+      }
+    },
+    [cartItem, dispatch, product]
+  );
 
   const mergedActions = useMemo(() => {
     if (actions) {
