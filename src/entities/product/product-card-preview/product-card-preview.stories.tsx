@@ -2,11 +2,31 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import ProductCardPreview from './product-card-preview';
 import { Product } from 'src/entities/product/items-consts';
+import { Provider } from 'react-redux';
+import { store } from 'src/store/store';
+import { BrowserRouter } from 'react-router-dom';
+import LanguageProvider from 'src/app/localization/language-provider';
+import { ThemeProvider } from 'src/app/theming/theme-provider';
 
 const meta: Meta<typeof ProductCardPreview> = {
   title: 'Components/ProductCardPreview',
   component: ProductCardPreview,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <BrowserRouter>
+          <LanguageProvider>
+            <ThemeProvider>
+              <div style={{ padding: '20px', background: '#f3f4f6', borderRadius: '12px' }}>
+                <Story />
+              </div>
+            </ThemeProvider>
+          </LanguageProvider>
+        </BrowserRouter>
+      </Provider>
+    ),
+  ],
 };
 
 export default meta;
@@ -42,19 +62,5 @@ const mockProduct2: Product = {
 export const ProductCardPreviewStory: Story = {
   args: {
     product: mockProduct1,
-  },
-};
-
-export const WithCustomActions: Story = {
-  args: {
-    product: mockProduct2,
-    actions: [
-      <button key="details" type="button">
-        Details
-      </button>,
-      <button key="wishlist" type="button">
-        Add to wishlist
-      </button>,
-    ],
   },
 };

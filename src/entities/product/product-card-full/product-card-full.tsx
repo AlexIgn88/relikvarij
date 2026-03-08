@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
 import s from './product-card-full.module.scss';
 import AddToCart from 'src/features/cart/add-to-cart/add-to-cart';
 import { useAppSelector, useAppDispatch } from 'src/store/hooks';
@@ -9,14 +8,14 @@ import { Product } from 'src/entities/product/items-consts';
 import { useNavigate } from 'react-router-dom';
 import { selectToken } from 'src/features/auth/auth-slice';
 import { selectUserProfile } from 'src/entities/profile/profile-slice';
+import { moneySign } from 'src/shared/lib/common-consts';
 
 type Props = {
   product: Product;
   defaultCount?: number;
-  imageProps?: React.ImgHTMLAttributes<HTMLImageElement>;
 };
 
-const ProductCardFull: FC<Props> = ({ product, defaultCount, imageProps }) => {
+const ProductCardFull: FC<Props> = ({ product, defaultCount }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -43,22 +42,24 @@ const ProductCardFull: FC<Props> = ({ product, defaultCount, imageProps }) => {
 
   return (
     <div className={s.card}>
-      <img src={image} alt={name} {...imageProps} className={clsx(s.image, imageProps?.className)} />
       <div className={s.content}>
+        <img src={image} alt={name} className={s.image} />
         <span className={s.category}>{category?.name}</span>
         <h2 className={s.name}>{name}</h2>
         <p className={s.description}>{description}</p>
-        <div className={s.footer}>
-          <div className={s.price}>₽&nbsp;{price}</div>
-          {token && profile && (
-            <div className={s.actions}>
-              <AddToCart key="add-to-cart" count={quantity} onChange={handleQuantityChange} />
-              <button onClick={() => navigate(`/products?modal=edit&id=${id}`)}>
-                {t('screens.items.buttons.edit')}
-              </button>
-            </div>
-          )}
+      </div>
+      <div className={s.footer}>
+        <div className={s.price}>
+          {moneySign}&nbsp;{price}
         </div>
+        {token && profile && (
+          <div className={s.actions}>
+            <AddToCart key="add-to-cart" count={quantity} onChange={handleQuantityChange} />
+            <button type="button" className={s.editButton} onClick={() => navigate(`/products?modal=edit&id=${id}`)}>
+              {t('screens.items.buttons.edit')}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

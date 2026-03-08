@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import clsx from 'clsx';
 import { Mode } from 'src/entities/product/items-list/items-list-consts';
 import ItemsList from 'src/entities/product/items-list/items-list';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
@@ -57,10 +58,10 @@ const ShoppingCartPage: FC = () => {
   return (
     <main>
       <div className={s.cartControlButtonsPanel}>
-        <button className={s.cartControlButtons} onClick={handleCreateOrder}>
+        <button type="button" className={clsx(s.cartControlButtons, s.orderButton)} onClick={handleCreateOrder}>
           Заказать
         </button>
-        <button className={s.cartControlButtons} onClick={handleClearCart}>
+        <button type="button" className={clsx(s.cartControlButtons, s.clearCartButton)} onClick={handleClearCart}>
           Очистить корзину
         </button>
       </div>

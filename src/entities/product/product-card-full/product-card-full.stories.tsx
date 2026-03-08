@@ -2,11 +2,31 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import ProductCardFull from './product-card-full';
 import { Product } from 'src/entities/product/items-consts';
+import { Provider } from 'react-redux';
+import { store } from 'src/store/store';
+import { BrowserRouter } from 'react-router-dom';
+import LanguageProvider from 'src/app/localization/language-provider';
+import { ThemeProvider } from 'src/app/theming/theme-provider';
 
 const meta: Meta<typeof ProductCardFull> = {
   title: 'Components/ProductCardFull',
   component: ProductCardFull,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <BrowserRouter>
+          <LanguageProvider>
+            <ThemeProvider>
+              <div style={{ padding: '20px', background: '#f3f4f6', borderRadius: '12px' }}>
+                <Story />
+              </div>
+            </ThemeProvider>
+          </LanguageProvider>
+        </BrowserRouter>
+      </Provider>
+    ),
+  ],
 };
 
 export default meta;
