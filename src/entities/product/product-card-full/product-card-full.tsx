@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import s from './product-card-full.module.scss';
 import AddToCart from 'src/features/cart/add-to-cart/add-to-cart';
@@ -16,6 +17,7 @@ type Props = {
 };
 
 const ProductCardFull: FC<Props> = ({ product, defaultCount, imageProps }) => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -51,7 +53,7 @@ const ProductCardFull: FC<Props> = ({ product, defaultCount, imageProps }) => {
           {token && profile && (
             <div className={s.actions}>
               <AddToCart key="add-to-cart" count={quantity} onChange={handleQuantityChange} />
-              <button onClick={() => navigate(`/products?modal=edit&id=${id}`)}>Edit</button>
+              <button onClick={() => navigate(`/products?modal=edit&id=${id}`)}>{t('screens.items.buttons.edit')}</button>
             </div>
           )}
         </div>
