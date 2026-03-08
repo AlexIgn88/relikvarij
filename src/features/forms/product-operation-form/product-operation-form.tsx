@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import cn from 'clsx';
 import { Button } from 'antd';
 import { ProductOperationFormProps } from './types';
@@ -10,14 +10,22 @@ import OldPriceField from './old-price-field/old-price-field';
 import AmountField from './amount-field/amount-field';
 import TypeField from './type-field/type-field';
 import CategoryIdField from './category-id-field/category-id-field';
-// import CategoryNameField from './category-name-field/category-name-field';
 import s from './product-operation-form.module.scss';
 import formStyle from 'src/features/forms/form.module.scss';
 import { AdminActionType } from 'src/features/forms/product-operation-form/product-operation-form-consts';
+import { useAppSelector } from 'src/store/hooks';
+import { selectCategories } from 'src/entities/categories/categories-slice';
 
 const ProductOperationForm = memo<ProductOperationFormProps>(
   ({ className, formManager, formElement, autoFocusElement, disabled, mode }) => {
     const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, setFieldValue } = formManager;
+
+    const categories = useAppSelector(selectCategories);
+
+    const categoryOptions = useMemo(
+      () => categories.map((category) => ({ label: category.name, value: category.id })),
+      [categories]
+    );
 
     const isProduct = mode === AdminActionType.CreateProduct || mode === AdminActionType.EditProduct;
     const isOperation = mode === AdminActionType.CreateOperation || mode === AdminActionType.EditOperation;
@@ -36,6 +44,10 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
 
     const handleTypeChange = (value: 'Cost' | 'Profit') => {
       setFieldValue('type', value);
+    };
+
+    const handleCategoryChange = (value: string) => {
+      setFieldValue('categoryId', value);
     };
 
     return (
@@ -146,27 +158,16 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
 
         <CategoryIdField
           onBlur={handleBlur}
-          onChange={handleChange}
+          onChange={handleCategoryChange}
           value={values.categoryId || ''}
           errors={errors.categoryId || ''}
           submitCount={submitCount}
           touched={touched.categoryId || false}
           disabled={disabled}
-          label="Category ID"
-          placeholder="Enter category ID"
+          label="Category"
+          placeholder="Select category"
+          options={categoryOptions}
         />
-
-        {/*<CategoryNameField*/}
-        {/*  onBlur={handleBlur}*/}
-        {/*  onChange={handleChange}*/}
-        {/*  value={values.categoryName || ''}*/}
-        {/*  errors={errors.categoryName || ''}*/}
-        {/*  submitCount={submitCount}*/}
-        {/*  touched={touched.categoryName || false}*/}
-        {/*  disabled={disabled}*/}
-        {/*  label="Category Name"*/}
-        {/*  placeholder="Enter category name"*/}
-        {/*/>*/}
 
         <div className={formStyle.buttonContainer}>
           <div className={formStyle.buttonWrapper}>

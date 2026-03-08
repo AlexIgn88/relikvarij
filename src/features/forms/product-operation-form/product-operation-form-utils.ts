@@ -68,16 +68,8 @@ export const createValidate =
     }
 
     if (!values.categoryId) {
-      errors.categoryId = 'Category ID is required';
-    } else if (values.categoryId.trim().length < 2) {
-      errors.categoryId = 'Category ID must be at least 2 characters';
+      errors.categoryId = 'Category is required';
     }
-
-    // if (!values.categoryName) {
-    //   errors.categoryName = 'Category Name is required';
-    // } else if (values.categoryName.trim().length < 2) {
-    //   errors.categoryName = 'Category Name must be at least 2 characters';
-    // }
 
     return errors;
   };

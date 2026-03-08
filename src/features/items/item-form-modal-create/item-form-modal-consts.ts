@@ -6,13 +6,3 @@ export type ProductFormValues = {
   oldPrice?: number;
   categoryId: string;
 };
-
-export type OperationFormValues = {
-  name: string;
-  desc: string;
-  amount?: number;
-  type?: 'Cost' | 'Profit';
-  categoryId: string;
-};
-
-export type FormValues = ProductFormValues | OperationFormValues;

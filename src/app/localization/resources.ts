@@ -19,15 +19,14 @@ export const resources = {
       screens: {
         home: {
           intro: `
-          My name is Alexey.  
-          I work as a frontend developer, writing in React.  
-          As a state manager, I use Redux Toolkit and I'm familiar with Next.js.  
-          Within this course, I want to deepen my knowledge  
-          and sharpen my skills in building React web applications.  
-          I also want to learn working with WebSockets  
-          and mastering form validation using libraries like Formik and React Hook Form.
+          Welcome, {{name}}, to "Antique Courtyard" – an online shop for rare and collectible treasures.  
+          Here you will find carefully curated antiques, vintage décor, and unique pieces with their own stories.  
+          Browse our catalog, add special finds to your cart, and easily track all operations with your collection.  
+          We thoughtfully design the interface so that every visit feels cozy and every purchase is a small journey into history.
         `,
-          welcomeText: 'Welcome, {{name}}!',
+          welcomeText: 'Online shop "Antique Courtyard"',
+          signup: 'Signup',
+          login: 'Login',
         },
         profile: {
           profileInfo: 'Profile Information',
@@ -37,12 +36,17 @@ export const resources = {
         },
         cart: {
           empty: 'Your cart is empty',
+          order: 'Order',
+          clear: 'Clear',
+          itemsCount: '{{count}} item(s) in cart',
+          totalPrice: 'Total: ₽ {{price}}',
         },
         items: {
           buttons: {
             create: 'Create',
             delete: 'Delete',
             add: 'Add to Cart',
+            edit: 'Edit',
           },
         },
       },
@@ -56,6 +60,7 @@ export const resources = {
             title: 'Password',
             placeholder: 'Enter password',
           },
+          submit: 'Submit',
         },
         ProfileForm: {
           name: {
@@ -90,15 +95,14 @@ export const resources = {
       screens: {
         home: {
           intro: `
-          Меня зовут Алексей.  
-          Работаю frontend-разработчиком, пишу на React.  
-          В качестве стейт-менеджера использую Redux Toolkit. Знаком с Next.js.  
-          В рамках этого курса хочется углубить знания  
-          и отточить навыки написания веб-приложений на React.  
-          Также хочется освоить вебсокеты и валидацию форм специальными библиотеками,  
-          такими как Formik и React Hook Form.
+          Добро пожаловать, {{name}}, в интернет-магазин «Антикварный Дворик» — пространство редких вещей и коллекционных сокровищ.  
+          Здесь вас ждут тщательно отобранные антиквариат, винтажный декор и уникальные предметы с собственной историей.  
+          Просматривайте каталог, добавляйте находки в корзину и удобно отслеживайте все операции со своей коллекцией.  
+          Мы заботимся о том, чтобы каждый визит был атмосферным, а каждая покупка — маленьким путешествием в прошлое.
         `,
-          welcomeText: 'Добро пожаловать, {{name}}!',
+          welcomeText: 'Интернет-магазин «Антикварный Дворик»',
+          signup: 'Регистрация',
+          login: 'Вход',
         },
         profile: {
           profileInfo: 'Информация о профиле',
@@ -108,12 +112,17 @@ export const resources = {
         },
         cart: {
           empty: 'Ваша корзина пуста',
+          order: 'Заказать',
+          clear: 'Очистить',
+          itemsCount: 'Товаров в корзине: {{count}}',
+          totalPrice: 'Итого: ₽ {{price}}',
         },
         items: {
           buttons: {
             create: 'Создать',
             delete: 'Удалить',
             add: 'В корзину',
+            edit: 'Редактировать',
           },
         },
       },
@@ -127,6 +136,7 @@ export const resources = {
             title: 'Пароль',
             placeholder: 'Укажите пароль',
           },
+          submit: 'Отправить',
         },
         ProfileForm: {
           name: {

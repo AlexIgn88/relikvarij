@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import cn from 'clsx';
 import { Button } from 'antd';
 import { AuthFormProps } from './types';
@@ -8,6 +9,7 @@ import s from './auth-form.module.scss';
 import formStyle from 'src/features/forms/form.module.scss';
 
 const AuthForm = memo<AuthFormProps>(({ className, formManager, formElement, autoFocusElement, disabled }) => {
+  const { t } = useTranslation();
   const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, submitForm } = formManager;
 
   return (
@@ -36,7 +38,7 @@ const AuthForm = memo<AuthFormProps>(({ className, formManager, formElement, aut
       <div className={formStyle.buttonContainer}>
         <div className={formStyle.buttonWrapper}>
           <Button type="primary" htmlType="submit" disabled={disabled} block>
-            Submit
+            {t('forms.AuthForm.submit')}
           </Button>
         </div>
       </div>

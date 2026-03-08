@@ -1,4 +1,4 @@
-import { UserProfile } from 'src/features/profile/profile-consts';
+import { Profile } from 'src/entities/profile/profile-consts';
 
 export type SignUpBody = {
   email: string;
@@ -8,7 +8,7 @@ export type SignUpBody = {
 
 export type SignupSuccessResponse = {
   token: string;
-  profile: UserProfile;
+  profile: Profile;
 };
 
 export type SignInSuccessResponse = SignupSuccessResponse;

@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.deleteButton {
+  width: 185px;
+  background: linear-gradient(145deg, #2a2f37, #1e2228);
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 12px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+}

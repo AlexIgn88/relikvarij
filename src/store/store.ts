@@ -1,29 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
 import type { MiddlewareAPI } from '@reduxjs/toolkit';
-import createSagaMiddleware from 'redux-saga';
-import authReducer from '../features/auth/auth-slice';
-import profileReducer from '../features/profile/profile-slice';
-import cartReducer from '../features/cart/cart-slice';
-import itemsReducer from '../features/items/items-slice';
-import { storageSyncMiddleware } from './middleware/storage-sync';
-import { rootSaga } from './root-saga';
-import { authApi } from '../features/auth/auth-api';
 
-const sagaMiddleware = createSagaMiddleware();
+import authReducer from '../features/auth/auth-slice';
+import profileReducer from 'src/entities/profile/profile-slice';
+import cartReducer from '../entities/cart/cart-slice';
+import itemsReducer from '../entities/product/items-slice';
+import categoriesReducer from 'src/entities/categories/categories-slice';
+import { storageSyncMiddleware } from './middleware/storage-sync';
+import logger from 'redux-logger';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     profile: profileReducer,
-    cart: cartReducer,
+    categories: categoriesReducer,
     items: itemsReducer,
-    [authApi.reducerPath]: authApi.reducer,
+    cart: cartReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(storageSyncMiddleware, sagaMiddleware, authApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger, storageSyncMiddleware),
 });
-
-sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

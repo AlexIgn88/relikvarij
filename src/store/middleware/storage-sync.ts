@@ -1,7 +1,7 @@
 import type { Middleware } from '@reduxjs/toolkit';
 import { setToken } from 'src/features/auth/auth-slice';
-import { clearProfile, loadProfile } from 'src/features/profile/profile-slice';
-import { LOCAL_STORAGE_KEYS } from 'src/common/common-consts';
+import { clearProfile, loadProfile } from 'src/entities/profile/profile-slice';
+import { LOCAL_STORAGE_KEYS } from 'src/shared/lib/common-consts';
 import { AppStore } from 'src/store/store';
 
 export const storageSyncMiddleware: Middleware = (store: AppStore) => {

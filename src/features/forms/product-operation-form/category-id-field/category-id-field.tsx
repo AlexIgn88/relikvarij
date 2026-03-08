@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import cn from 'clsx';
-import { Input } from 'antd';
+import { Select } from 'antd';
 import type { FormikHandlers } from 'formik';
-import { FormItem } from 'src/shared/ui/FormItem';
-import { getValidates } from 'src/utils/validation';
+import { FormItem } from 'src/shared/ui/form-item';
+import { getValidates } from 'src/shared/lib/validation';
 import s from './category-id-field.module.scss';
 
 export type CategoryIdFieldProps = {
@@ -13,25 +13,26 @@ export type CategoryIdFieldProps = {
   touched: boolean;
   errors: string;
   value: string;
-  onChange: FormikHandlers['handleChange'];
+  onChange: (value: string) => void;
   onBlur: FormikHandlers['handleBlur'];
+  options: { label: string; value: string }[];
   label: string;
   placeholder: string;
 };
 
 const CategoryIdField = memo<CategoryIdFieldProps>(
-  ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount, label, placeholder }) => {
+  ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount, label, placeholder, options }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
     return (
       <FormItem className={cn(s?.root, className)} title={label} required validateStatus={validateStatus} help={help}>
-        <Input
+        <Select
           disabled={disabled}
-          name="categoryId"
+          value={value || undefined}
           onChange={onChange}
           onBlur={onBlur}
-          value={value}
           placeholder={placeholder}
+          options={options}
         />
       </FormItem>
     );
