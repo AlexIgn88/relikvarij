@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import s from 'src/pages/home-page/home-page.module.scss';
+import s from './login-page.module.scss';
 import { Formik } from 'formik';
 import AuthForm from 'src/features/forms/auth-form/auth-form';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';

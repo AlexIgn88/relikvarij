@@ -1,0 +1,29 @@
+.welcomeText {
+  padding: 30px;
+  line-height: 1.8;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.welcomeTextContainer {
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.error {
+  margin-top: 12px;
+  padding: 10px;
+  color: #ff4d4f;
+  background: #fff1f0;
+  border: 1px solid #ffa39e;
+  border-radius: 6px;
+}

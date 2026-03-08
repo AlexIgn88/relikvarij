@@ -22,7 +22,7 @@ const SignupPage: FC = () => {
     <main>
       <div className={s.welcomeText}>
         <div className={s.welcomeTextContainer}>
-          <h2>Signup with Redux Thunk</h2>
+          <h2>Signup</h2>
           <Formik
             initialValues={initialAuthFormValues}
             validate={authFormValidate}
