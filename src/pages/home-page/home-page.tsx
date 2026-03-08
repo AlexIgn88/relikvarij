@@ -4,6 +4,7 @@ import { useAppSelector } from 'src/store/hooks';
 
 import s from './home-page.module.scss';
 import LoginLinks from 'src/features/auth/login-links/login-links';
+import clsx from 'clsx';
 
 const HomePage: FC = () => {
   const { t } = useTranslation();
@@ -13,7 +14,7 @@ const HomePage: FC = () => {
 
   if (token && profile) {
     return (
-      <main className={s.main}>
+      <main className={clsx(s.main, s.background)}>
         <section className={s.hero}>
           <div className={s.heroOverlay} />
           <div className={s.heroContent}>
@@ -27,7 +28,7 @@ const HomePage: FC = () => {
   }
 
   return (
-    <main>
+    <main className={clsx(s.main, s.backgroundLinks)}>
       <LoginLinks className={s.links} />
     </main>
   );

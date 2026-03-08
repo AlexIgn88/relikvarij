@@ -1,3 +1,7 @@
+.background {
+  background: linear-gradient(135deg, #7a5c48 0%, #6a5240 30%, #8f7560 60%, #726050 100%);
+}
+
 .main {
   margin: 0;
   padding: 0;
@@ -5,7 +9,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #3d2818 0%, #2a1a12 30%, #523828 60%, #352218 100%);
+  font-weight: bold;
 }
 
 .hero {
@@ -15,7 +19,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #3d2818 0%, #2a1a12 30%, #523828 60%, #352218 100%);
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -24,7 +27,6 @@
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.5) 100%);
   pointer-events: none;
 }
 
@@ -64,18 +66,42 @@
 }
 
 .links {
+  margin-top: 135px;
   list-style-type: none;
-  font-size: 20px;
-  font-weight: 600;
   padding-left: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 20px;
 
+  li {
+    border-bottom: 1px solid black;
+    transition: transform 0.25s ease, color 0.25s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+
+      a {
+        color: #c9a86c;
+        text-shadow: 0 0 12px rgba(201, 168, 108, 0.4);
+      }
+    }
+  }
+
   a {
     text-decoration: none;
+    font-weight: 600;
+    color: #301e14;
+    font-size: 30px;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
   }
+}
+
+.backgroundLinks {
+  background-image: url('../../assets/images/logo.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .error {
