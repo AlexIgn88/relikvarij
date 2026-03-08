@@ -3,7 +3,7 @@ import React, { FC, useCallback } from 'react';
 import s from './product-card-preview.module.scss';
 import AddToCart from 'src/features/cart/add-to-cart/add-to-cart';
 import { useAppSelector, useAppDispatch } from 'src/store/hooks';
-import { addToCart, updateQuantity } from 'src/features/cart/cart-slice';
+import { addToCart, updateQuantity } from 'src/entities/cart/cart-slice';
 import { Product } from 'src/entities/product/items-consts';
 import DeleteProduct from 'src/features/cart/delete-product/delete-product';
 import { moneySign } from 'src/shared/lib/common-consts';

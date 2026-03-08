@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import s from './product-card-full.module.scss';
 import AddToCart from 'src/features/cart/add-to-cart/add-to-cart';
 import { useAppSelector, useAppDispatch } from 'src/store/hooks';
-import { addToCart, updateQuantity } from 'src/features/cart/cart-slice';
+import { addToCart, updateQuantity } from 'src/entities/cart/cart-slice';
 import { Product } from 'src/entities/product/items-consts';
 import { useNavigate } from 'react-router-dom';
 import { selectToken } from 'src/features/auth/auth-slice';

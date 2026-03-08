@@ -13,7 +13,7 @@ import {
   selectCartItems,
   selectloadItemsStatus,
   selectProducts,
-} from 'src/features/cart/cart-slice';
+} from 'src/entities/cart/cart-slice';
 import { THUNK_STATUSES } from 'src/store/store-consts';
 
 const ShoppingCartPage: FC = () => {

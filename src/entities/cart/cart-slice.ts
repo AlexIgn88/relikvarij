@@ -2,7 +2,7 @@ import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { Product } from 'src/entities/product/items-consts';
-import { CartItem, CreateOrderSuccessResponse, ProductsForOrder } from 'src/features/cart/cart-consts';
+import { CartItem, CreateOrderSuccessResponse, ProductsForOrder } from 'src/entities/cart/cart-consts';
 import { API, API_BASE_URL, ApiError, LOCAL_STORAGE_KEYS } from 'src/shared/lib/common-consts';
 import { THUNK_STATUSES, ThunkStatus } from 'src/store/store-consts';
 

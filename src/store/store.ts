@@ -3,7 +3,7 @@ import type { MiddlewareAPI } from '@reduxjs/toolkit';
 
 import authReducer from '../features/auth/auth-slice';
 import profileReducer from 'src/entities/profile/profile-slice';
-import cartReducer from '../features/cart/cart-slice';
+import cartReducer from '../entities/cart/cart-slice';
 import itemsReducer from '../entities/product/items-slice';
 import categoriesReducer from 'src/entities/categories/categories-slice';
 import { storageSyncMiddleware } from './middleware/storage-sync';
