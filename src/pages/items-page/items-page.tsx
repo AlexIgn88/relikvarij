@@ -15,6 +15,7 @@ import {
 import { THUNK_STATUSES } from 'src/store/store-consts';
 import ItemFormModal from 'src/features/items/item-form-modal/item-form-modal';
 import ProtectedRoute from 'src/app/router/protected-route/protected-route';
+import Spinner from 'src/shared/ui/spinner/spinner';
 
 const ItemsPage: FC = () => {
   const { t } = useTranslation();
@@ -49,7 +50,7 @@ const ItemsPage: FC = () => {
   const isEdit = modal === 'edit' && Boolean(id);
 
   if (load) {
-    return <div>Загрузка...</div>;
+    return <Spinner />;
   }
 
   if (!items) {
