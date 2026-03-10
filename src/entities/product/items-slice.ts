@@ -59,6 +59,7 @@ const itemsSlice = createSlice({
 });
 
 export const { addProduct, updateProduct } = itemsSlice.actions;
+
 export default itemsSlice.reducer;
 
 const selectItemsState = (state: RootState) => state.items;
