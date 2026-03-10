@@ -73,7 +73,7 @@ const ShoppingCartPage: FC = () => {
           {t('screens.cart.clear')}
         </button>
       </div>
-      <ItemsList data={products} mode={Mode.preview} renderItem={renderItem} />
+      <ItemsList data={products} mode={Mode.preview} />
     </main>
   );
 };

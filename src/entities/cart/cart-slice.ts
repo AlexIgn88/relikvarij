@@ -8,12 +8,12 @@ import { THUNK_STATUSES, ThunkStatus } from 'src/store/store-consts';
 
 import { RootState } from 'src/store/store';
 
-type CartState = {
+export type CartState = {
   loadItemsStatus: ThunkStatus;
   items: CartItem[];
 };
 
-const initialState: CartState = {
+export const initialState: CartState = {
   loadItemsStatus: THUNK_STATUSES.DEFAULT,
   items: [],
 };

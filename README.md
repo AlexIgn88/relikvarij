@@ -1,19 +1,26 @@
-# Стартовый шаблон React
+# Интернет‑магазин «Антикварный Дворик»
 
-Включает в себя
-- react 18
-- typescript
-- storybook
-- jest
-- eslint
-- prettier
-- husky
+Проект интернет‑магазина «Антикварный Дворик»
 
-Проект включает в себя деплой на github pages и будет доступен по адресу
-https://your-account-name.github.io
+## Стек
 
-Для запуска нужно запушить любой коммит в main ветку.
+- **React 18**
+- **TypeScript**
+- **Feature-Sliced Design** (структура проекта – [feature-sliced.design](https://feature-sliced.design/ru/docs/get-started/overview))
+- **Storybook**
+- **Jest**
+- **ESLint**
+- **Prettier**
+- **Husky**
 
-Настройку деплоя смотрите тут .github/workflows/main.yml
+## Скрипты
 
-Используйте [feature sliced design](https://feature-sliced.design/ru/docs/get-started/overview)
+- **Установка зависимостей**: `npm install`
+- **Запуск в режиме разработки**: `npm run dev`
+- **Сборка**: `npm run build`
+- **Тесты**: `npm test`
+- **Storybook**: `npm run storybook`
+
+## Деплой
+
+Проект настроен на деплой в Versel (https://relikvarij-5u6y.vercel.app/)

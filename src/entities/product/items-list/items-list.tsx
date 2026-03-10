@@ -1,71 +1,23 @@
-import React, { FC, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import clsx from 'clsx';
+import React, { FC, useEffect, useRef } from 'react';
 import { Product } from 'src/entities/product/items-consts';
 import s from './items-list.module.scss';
 import ProductCardPreview from 'src/entities/product/product-card-preview/product-card-preview';
 import ProductCardFull from 'src/entities/product/product-card-full/product-card-full';
 import { Mode } from './items-list-consts';
 
-type RenderItem = (params: { item: Product; index: number; mode: Mode }) => ReactNode;
-
 type Props = {
   data: Product[];
   mode: Mode.full | Mode.preview;
-  renderItem?: RenderItem;
-  listProps?: React.HTMLAttributes<HTMLDivElement>;
   onLoadMore?: () => void;
 };
 
-const toProductPreviewProps = (product: Product) => ({
-  product,
-});
-
-const toProductFullProps = (product: Product) => ({
-  product,
-});
-
-const ItemsList: FC<Props> = ({ data, mode, renderItem, listProps, onLoadMore }) => {
-  const [items, setItems] = useState<Product[]>(data);
+const ItemsList: FC<Props> = ({ data, mode, onLoadMore }) => {
   const observerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    setItems(data);
-  }, [data]);
-
-  const listClassName = useMemo(() => clsx(s.list, listProps?.className), [listProps?.className]);
-
-  const mergedListProps = useMemo(
-    () => ({
-      ...listProps,
-      className: listClassName,
-    }),
-    [listProps, listClassName]
-  );
-
-  const defaultRenderer = useCallback(
-    (item: Product) => {
-      return mode === Mode.preview ? (
-        <ProductCardPreview {...toProductPreviewProps(item)} />
-      ) : (
-        <ProductCardFull {...toProductFullProps(item)} />
-      );
-    },
-    [mode]
-  );
-
-  const resolvedRenderer = useCallback(
-    (item: Product, index: number) => {
-      if (renderItem) {
-        return renderItem({ item, index, mode });
-      }
-
-      return defaultRenderer(item);
-    },
-    [defaultRenderer, mode, renderItem]
-  );
+  const ItemComponent = mode === Mode.preview ? ProductCardPreview : ProductCardFull;
 
   useEffect(() => {
-    if (!onLoadMore || renderItem) return;
+    if (!onLoadMore) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -80,23 +32,14 @@ const ItemsList: FC<Props> = ({ data, mode, renderItem, listProps, onLoadMore })
     return () => {
       if (target) observer.unobserve(target);
     };
-  }, [onLoadMore, renderItem]);
-
-  // if (!items.length) {
-  //   const resolvedEmpty = typeof emptyState === 'function' ? emptyState() : emptyState;
-  //   return <div className={s.empty}>{resolvedEmpty ?? 'No items to display'}</div>;
-  // }
+  }, [onLoadMore]);
 
   return (
     <>
-      <div {...mergedListProps}>
-        {items.map((item, index) => {
-          const element = resolvedRenderer(item, index);
-          // const key = 'id' in item ? item.id : `${index}`;
-          const key = `${index}`;
-
-          return <React.Fragment key={key}>{element}</React.Fragment>;
-        })}
+      <div className={s.list}>
+        {data.map((item) => (
+          <ItemComponent key={item.id} product={item} />
+        ))}
       </div>
       {onLoadMore && <div ref={observerRef} className={s.observer} aria-hidden />}
     </>

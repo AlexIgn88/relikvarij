@@ -7,14 +7,7 @@ const meta: Meta<typeof ItemsList> = {
   title: 'Components/ItemsList',
   component: ItemsList,
   tags: ['autodocs'],
-  argTypes: {
-    listProps: {
-      control: false,
-    },
-    renderItem: {
-      control: false,
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
