@@ -3,6 +3,7 @@ import { AuthFormValues } from 'src/features/forms/auth-form/types';
 export const initialAuthFormValues: AuthFormValues = {
   email: '',
   password: '',
+  passwordConfirmation: '',
 };
 
 export const authFormValidate = (values: AuthFormValues): Partial<Record<keyof AuthFormValues, string>> => {
@@ -15,5 +16,17 @@ export const authFormValidate = (values: AuthFormValues): Partial<Record<keyof A
   if (!values.password) {
     errors.password = 'Password is required';
   }
+  return errors;
+};
+
+export const signupFormValidate = (values: AuthFormValues): Partial<Record<keyof AuthFormValues, string>> => {
+  const errors = authFormValidate(values);
+
+  if (!values.passwordConfirmation) {
+    errors.passwordConfirmation = 'Password confirmation is required';
+  } else if (values.password !== values.passwordConfirmation) {
+    errors.passwordConfirmation = 'Passwords do not match';
+  }
+
   return errors;
 };

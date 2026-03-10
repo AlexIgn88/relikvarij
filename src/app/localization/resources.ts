@@ -60,6 +60,10 @@ export const resources = {
             title: 'Password',
             placeholder: 'Enter password',
           },
+          passwordConfirmation: {
+            title: 'Confirm password',
+            placeholder: 'Confirm password',
+          },
           submit: 'Submit',
         },
         ProfileForm: {
@@ -135,6 +139,10 @@ export const resources = {
           password: {
             title: 'Пароль',
             placeholder: 'Укажите пароль',
+          },
+          passwordConfirmation: {
+            title: 'Подтвердите пароль',
+            placeholder: 'Подтвердите пароль',
           },
           submit: 'Отправить',
         },

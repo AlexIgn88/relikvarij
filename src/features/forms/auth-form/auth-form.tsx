@@ -5,10 +5,11 @@ import { Button } from 'antd';
 import { AuthFormProps } from './types';
 import PasswordField from './password-field/password-field';
 import EmailField from './email-field/email-field';
+import ConfirmPasswordField from './confirm-password-field/confirm-password-field';
 import s from './auth-form.module.scss';
 import formStyle from 'src/features/forms/form.module.scss';
 
-const AuthForm = memo<AuthFormProps>(({ className, formManager, formElement, autoFocusElement, disabled }) => {
+const AuthForm = memo<AuthFormProps>(({ className, formManager, formElement, autoFocusElement, disabled, withPasswordConfirmation }) => {
   const { t } = useTranslation();
   const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, submitForm } = formManager;
 
@@ -35,6 +36,18 @@ const AuthForm = memo<AuthFormProps>(({ className, formManager, formElement, aut
         touched={touched.password}
         disabled={disabled}
       />
+      {withPasswordConfirmation && (
+        <ConfirmPasswordField
+          onPressEnter={submitForm}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={values.passwordConfirmation}
+          errors={errors.passwordConfirmation}
+          submitCount={submitCount}
+          touched={touched.passwordConfirmation}
+          disabled={disabled}
+        />
+      )}
       <div className={formStyle.buttonContainer}>
         <div className={formStyle.buttonWrapper}>
           <Button type="primary" htmlType="submit" disabled={disabled} block>

@@ -1,0 +1,57 @@
+import React, { memo } from 'react';
+import cn from 'clsx';
+import Input from 'antd/lib/input';
+import { FormikHandlers } from 'formik/dist/types';
+import { LockOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
+import { AuthFormProps } from '../types';
+import { FormItem } from 'src/shared/ui/form-item';
+import { getValidates } from 'src/shared/lib/validation';
+import s from './confirm-password-field.module.scss';
+
+export type ConfirmPasswordFieldProps = Pick<AuthFormProps, 'className' | 'disabled'> & {
+  submitCount: number;
+  touched: boolean;
+  errors: string;
+  value: string;
+  onChange: FormikHandlers['handleChange'];
+  onPressEnter: () => void;
+  onBlur: FormikHandlers['handleBlur'];
+};
+
+const prefix = <LockOutlined className="site-form-item-icon" />;
+
+export const ConfirmPasswordField = memo<ConfirmPasswordFieldProps>(
+  ({ className, onChange, onBlur, onPressEnter, touched, value, errors, disabled, submitCount }) => {
+    const { t } = useTranslation();
+
+    const { validateStatus, help } = getValidates(errors, touched, submitCount);
+
+    return (
+      <FormItem
+        className={cn(s?.root, className)}
+        title={t(`forms.AuthForm.passwordConfirmation.title`)}
+        required
+        validateStatus={validateStatus}
+        help={help}
+      >
+        <Input.Password
+          prefix={prefix}
+          onPressEnter={onPressEnter}
+          disabled={disabled}
+          data-cy="input-confirm-password"
+          name="passwordConfirmation"
+          onChange={onChange}
+          onBlur={onBlur}
+          value={value}
+          placeholder={t(`forms.AuthForm.passwordConfirmation.placeholder`)}
+        />
+      </FormItem>
+    );
+  }
+);
+
+ConfirmPasswordField.displayName = 'ConfirmPasswordField';
+
+export default ConfirmPasswordField;
+
