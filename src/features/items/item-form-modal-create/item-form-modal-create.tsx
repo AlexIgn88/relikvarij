@@ -8,7 +8,7 @@ import {
   FormikContext,
 } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { selectProducts, addNewProduct } from 'src/entities/product/items-slice';
+import { selectProductById, addNewProduct } from 'src/entities/product/items-slice';
 
 import { NewProduct, Product } from 'src/entities/product/items-consts';
 import { ProductFormValues } from 'src/features/items/item-form-modal-create/item-form-modal-consts';
@@ -22,20 +22,14 @@ type Props = {
 const ItemFormModalCreate: FC<Props> = ({ mode, itemId, onClose }) => {
   const dispatch = useAppDispatch();
 
-  const products = useAppSelector(selectProducts);
-
   const formElementRef = useRef<HTMLFormElement>(null);
   const autoFocusElementRef = useRef(null);
 
-  //TODO
-  const existingItem = useMemo(() => {
-    if (!itemId) return null;
-    return products.find((p) => p.id === itemId);
-  }, [itemId, products]);
+  const templateProduct = useAppSelector((state) => selectProductById(state, itemId));
 
   const initialValues = useMemo(() => {
-    if (existingItem) {
-      const product = existingItem as Product;
+    if (templateProduct) {
+      const product = templateProduct as Product;
       return {
         name: product.name,
         photo: product.photo,
@@ -47,7 +41,7 @@ const ItemFormModalCreate: FC<Props> = ({ mode, itemId, onClose }) => {
       };
     }
     return getEmptyValues(mode);
-  }, [existingItem, mode]);
+  }, [templateProduct, mode]);
 
   useEffect(() => {
     document.body.style.overflowY = 'hidden';
@@ -57,7 +51,7 @@ const ItemFormModalCreate: FC<Props> = ({ mode, itemId, onClose }) => {
   }, []);
 
   const handleSubmit = (values: ProductFormValues) => {
-    const createdAt = existingItem ? existingItem.createdAt : new Date().toISOString();
+    const createdAt = templateProduct ? templateProduct.createdAt : new Date().toISOString();
 
     const product: NewProduct = {
       name: values.name,

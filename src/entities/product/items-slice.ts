@@ -68,6 +68,9 @@ export const selectloadItemsStatus = createSelector([selectItemsState], (itemsSt
 
 export const selectProducts = createSelector([selectItemsState], (itemsState) => itemsState.products);
 
+export const selectProductById = (state: RootState, id?: string) =>
+  state.items.products.find((product) => product.id === id);
+
 export const selectProductsPagination = createSelector([selectItemsState], (itemsState) => ({
   pageNumber: itemsState.productsPageNumber,
   total: itemsState.productsTotal,

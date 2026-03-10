@@ -8,7 +8,7 @@ import {
   FormikContext,
 } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { selectProducts, editProduct } from 'src/entities/product/items-slice';
+import { selectProductById, editProduct } from 'src/entities/product/items-slice';
 
 import { NewProduct, Product } from 'src/entities/product/items-consts';
 
@@ -23,20 +23,13 @@ type Props = {
 const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
   const dispatch = useAppDispatch();
 
-  const products = useAppSelector(selectProducts);
-
   const formElementRef = useRef<HTMLFormElement>(null);
   const autoFocusElementRef = useRef(null);
 
-  //TODO
-  const existingItem = useMemo(() => {
-    if (!itemId) return null;
-    return products.find((p) => p.id === itemId);
-  }, [itemId, products]);
+  const product = useAppSelector((state) => selectProductById(state, itemId));
 
   const initialValues = useMemo(() => {
-    if (existingItem) {
-      const product = existingItem as Product;
+    if (product) {
       return {
         id: product.id,
         name: product.name,
@@ -49,7 +42,7 @@ const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
       };
     }
     return getEmptyValues(mode);
-  }, [existingItem, mode]);
+  }, [product, mode]);
 
   useEffect(() => {
     document.body.style.overflowY = 'hidden';
@@ -59,7 +52,11 @@ const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
   }, []);
 
   const handleSubmit = (values: ProductFormValues) => {
-    const product: Omit<NewProduct, 'createdAt'> = {
+    if (!itemId) {
+      // itemId обязателен для режима редактирования
+      return;
+    }
+    const updatedData: Omit<NewProduct, 'createdAt'> = {
       name: values.name,
       photo: values.photo || '',
       desc: values.desc,
@@ -68,7 +65,7 @@ const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
       categoryId: values.categoryId,
     };
 
-    dispatch(editProduct({ id: existingItem.id, data: product }));
+    dispatch(editProduct({ id: itemId, data: updatedData }));
     onClose();
   };
 
