@@ -12,8 +12,8 @@ const CategoryCardPreview: FC<Props> = ({ category }) => {
 
   return (
     <div className={s.card}>
-      {photo && <img src={photo} alt={name} className={s.image} />}
       <h3 className={s.name}>{name}</h3>
+      {photo && <img src={photo} alt={name} className={s.image} />}
     </div>
   );
 };
