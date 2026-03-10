@@ -64,6 +64,13 @@ export const resources = {
             title: 'Confirm password',
             placeholder: 'Confirm password',
           },
+          validation: {
+            emailRequired: 'Email is required',
+            emailInvalid: 'Invalid email address',
+            passwordRequired: 'Password is required',
+            passwordConfirmationRequired: 'Password confirmation is required',
+            passwordsNotMatch: 'Passwords do not match',
+          },
           submit: 'Submit',
         },
         ProfileForm: {
@@ -143,6 +150,13 @@ export const resources = {
           passwordConfirmation: {
             title: 'Подтвердите пароль',
             placeholder: 'Подтвердите пароль',
+          },
+          validation: {
+            emailRequired: 'Поле Email обязательно для заполнения',
+            emailInvalid: 'Некорректный адрес электронной почты',
+            passwordRequired: 'Пароль обязателен для заполнения',
+            passwordConfirmationRequired: 'Подтверждение пароля обязательно для заполнения',
+            passwordsNotMatch: 'Пароли не совпадают',
           },
           submit: 'Отправить',
         },
