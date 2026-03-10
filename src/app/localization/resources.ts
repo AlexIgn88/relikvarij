@@ -157,7 +157,10 @@ export const resources = {
             photoRequired: 'Photo is required',
             photoTooShort: 'Photo must be at least 2 characters',
           },
-          submit: 'Create category',
+          submit: {
+            create: 'Create category',
+            update: 'Update category',
+          },
         },
         ProfileForm: {
           name: {
@@ -330,7 +333,10 @@ export const resources = {
             photoRequired: 'Фото обязательно для заполнения',
             photoTooShort: 'Ссылка на фото должна содержать не менее 2 символов',
           },
-          submit: 'Создать категорию',
+          submit: {
+            create: 'Создать категорию',
+            update: 'Редактировать категорию',
+          },
         },
         ProfileForm: {
           name: {

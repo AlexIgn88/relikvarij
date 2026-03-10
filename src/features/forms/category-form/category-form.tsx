@@ -9,9 +9,18 @@ import PhotoField from 'src/features/forms/product-operation-form/photo-field/ph
 import formStyle from 'src/features/forms/form.module.scss';
 import s from './category-form.module.scss';
 
-const CategoryForm = memo<CategoryFormProps>(({ className, formManager, formElement, autoFocusElement, disabled }) => {
+const CategoryForm: React.FC<CategoryFormProps> = ({
+  className,
+  formManager,
+  formElement,
+  autoFocusElement,
+  disabled,
+  mode = 'create',
+}) => {
   const { t } = useTranslation();
   const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange } = formManager;
+
+  const submitKey = mode === 'edit' ? 'forms.CategoryForm.submit.update' : 'forms.CategoryForm.submit.create';
 
   return (
     <form ref={formElement} onSubmit={handleSubmit} className={cn(s.root, className)}>
@@ -43,14 +52,12 @@ const CategoryForm = memo<CategoryFormProps>(({ className, formManager, formElem
       <div className={formStyle.buttonContainer}>
         <div className={formStyle.buttonWrapper}>
           <Button type="primary" htmlType="submit" disabled={disabled} block>
-            {t('forms.CategoryForm.submit')}
+            {t(submitKey)}
           </Button>
         </div>
       </div>
     </form>
   );
-});
+};
 
-CategoryForm.displayName = 'CategoryForm';
-
-export default CategoryForm;
+export default memo(CategoryForm);
