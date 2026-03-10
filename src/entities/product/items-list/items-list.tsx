@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useMemo, useRef } from 'react';
 import clsx from 'clsx';
 import { Product } from 'src/entities/product/items-consts';
 import s from './items-list.module.scss';
@@ -16,21 +16,8 @@ type Props = {
   onLoadMore?: () => void;
 };
 
-const toProductPreviewProps = (product: Product) => ({
-  product,
-});
-
-const toProductFullProps = (product: Product) => ({
-  product,
-});
-
 const ItemsList: FC<Props> = ({ data, mode, renderItem, listProps, onLoadMore }) => {
-  const [items, setItems] = useState<Product[]>(data);
   const observerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    setItems(data);
-  }, [data]);
 
   const listClassName = useMemo(() => clsx(s.list, listProps?.className), [listProps?.className]);
 
@@ -42,27 +29,10 @@ const ItemsList: FC<Props> = ({ data, mode, renderItem, listProps, onLoadMore })
     [listProps, listClassName]
   );
 
-  const defaultRenderer = useCallback(
-    (item: Product) => {
-      return mode === Mode.preview ? (
-        <ProductCardPreview {...toProductPreviewProps(item)} />
-      ) : (
-        <ProductCardFull {...toProductFullProps(item)} />
-      );
-    },
-    [mode]
-  );
+  const ItemComponent = mode === Mode.preview ? ProductCardPreview : ProductCardFull;
 
-  const resolvedRenderer = useCallback(
-    (item: Product, index: number) => {
-      if (renderItem) {
-        return renderItem({ item, index, mode });
-      }
-
-      return defaultRenderer(item);
-    },
-    [defaultRenderer, mode, renderItem]
-  );
+  const resolvedRenderer = (item: Product, index: number) =>
+    renderItem ? renderItem({ item, index, mode }) : <ItemComponent product={item} />;
 
   useEffect(() => {
     if (!onLoadMore || renderItem) return;
@@ -90,7 +60,7 @@ const ItemsList: FC<Props> = ({ data, mode, renderItem, listProps, onLoadMore })
   return (
     <>
       <div {...mergedListProps}>
-        {items.map((item, index) => {
+        {data.map((item, index) => {
           const element = resolvedRenderer(item, index);
           // const key = 'id' in item ? item.id : `${index}`;
           const key = `${index}`;
