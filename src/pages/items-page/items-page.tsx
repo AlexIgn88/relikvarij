@@ -29,6 +29,7 @@ const ItemsPage: FC = () => {
 
   const items = useAppSelector(selectProducts);
   const pagination = useAppSelector(selectProductsPagination);
+  const profile = useAppSelector((state) => state.profile.profile);
 
   const hasMore = items.length < pagination.total;
 
@@ -40,8 +41,6 @@ const ItemsPage: FC = () => {
 
     dispatch(loadProducts({ pageNumber: pagination.pageNumber + 1 }));
   }, [dispatch, hasMore, pagination.pageNumber]);
-
-  const profile = useAppSelector((state) => state.profile.profile);
 
   const modal = searchParams.get('modal');
   const id = searchParams.get('id');

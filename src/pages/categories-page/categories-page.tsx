@@ -16,6 +16,7 @@ const CategoriesPage: FC = () => {
   const [mode, setMode] = useState<AdminActionType | null>(null);
 
   const categories = useAppSelector(selectCategories);
+  const profile = useAppSelector((state) => state.profile.profile);
 
   const loadCategoriesStatus = useAppSelector(selectloadCategoriesStatus);
   const load = loadCategoriesStatus === THUNK_STATUSES.PENDING;
@@ -35,18 +36,20 @@ const CategoriesPage: FC = () => {
 
   return (
     <main className={s.main}>
-      <div className={s.controlPanel}>
-        <button
-          type="button"
-          className={s.controlButton}
-          onClick={() => {
-            setMode(AdminActionType.CreateProduct);
-            setCategoryId(undefined);
-          }}
-        >
-          {t('screens.categories.buttons.create')}
-        </button>
-      </div>
+      {profile && (
+        <div className={s.controlPanel}>
+          <button
+            type="button"
+            className={s.controlButton}
+            onClick={() => {
+              setMode(AdminActionType.CreateProduct);
+              setCategoryId(undefined);
+            }}
+          >
+            {t('screens.categories.buttons.create')}
+          </button>
+        </div>
+      )}
 
       <div className={s.grid}>
         {categories.map((item) => (
@@ -57,12 +60,12 @@ const CategoriesPage: FC = () => {
               setCategoryId(item.id);
             }}
           >
-            <CategoryCardPreview category={item} />
+            <CategoryCardPreview category={item} isClickable={!!profile} />
           </div>
         ))}
       </div>
 
-      {mode && <CategoryFormModal mode={mode} categoryId={categoryId} onClose={handleCloseModal} />}
+      {profile && mode && <CategoryFormModal mode={mode} categoryId={categoryId} onClose={handleCloseModal} />}
     </main>
   );
 };
