@@ -15,9 +15,11 @@ import formStyle from 'src/features/forms/form.module.scss';
 import { AdminActionType } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { useAppSelector } from 'src/store/hooks';
 import { selectCategories } from 'src/entities/categories/categories-slice';
+import { useTranslation } from 'react-i18next';
 
 const ProductOperationForm = memo<ProductOperationFormProps>(
   ({ className, formManager, formElement, autoFocusElement, disabled, mode }) => {
+    const { t } = useTranslation();
     const { values, touched, errors, submitCount, handleBlur, handleSubmit, handleChange, setFieldValue } = formManager;
 
     const categories = useAppSelector(selectCategories);
@@ -61,8 +63,16 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
           submitCount={submitCount}
           touched={touched.name || false}
           disabled={disabled}
-          label={isProduct ? 'Product Name' : 'Operation Name'}
-          placeholder={isProduct ? 'Enter product name' : 'Enter operation name'}
+          label={
+            isProduct
+              ? t('forms.ProductOperationForm.product.name.title')
+              : t('forms.ProductOperationForm.operation.name.title')
+          }
+          placeholder={
+            isProduct
+              ? t('forms.ProductOperationForm.product.name.placeholder')
+              : t('forms.ProductOperationForm.operation.name.placeholder')
+          }
         />
 
         {isProduct && (
@@ -75,8 +85,8 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
               submitCount={submitCount}
               touched={touched.photo || false}
               disabled={disabled}
-              label="Photo URL"
-              placeholder="Enter photo URL"
+              label={t('forms.ProductOperationForm.product.photo.title')}
+              placeholder={t('forms.ProductOperationForm.product.photo.placeholder')}
             />
 
             <DescriptionField
@@ -87,8 +97,8 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
               submitCount={submitCount}
               touched={touched.desc || false}
               disabled={disabled}
-              label="Description"
-              placeholder="Enter description (optional)"
+              label={t('forms.ProductOperationForm.product.description.title')}
+              placeholder={t('forms.ProductOperationForm.product.description.placeholder')}
             />
 
             <PriceField
@@ -99,8 +109,8 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
               submitCount={submitCount}
               touched={touched.price || false}
               disabled={disabled}
-              label="Price"
-              placeholder="Enter price"
+              label={t('forms.ProductOperationForm.product.price.title')}
+              placeholder={t('forms.ProductOperationForm.product.price.placeholder')}
             />
 
             <OldPriceField
@@ -111,8 +121,8 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
               submitCount={submitCount}
               touched={touched.oldPrice || false}
               disabled={disabled}
-              label="Old Price"
-              placeholder="Enter old price (optional)"
+              label={t('forms.ProductOperationForm.product.oldPrice.title')}
+              placeholder={t('forms.ProductOperationForm.product.oldPrice.placeholder')}
             />
           </>
         )}
@@ -127,8 +137,8 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
               submitCount={submitCount}
               touched={touched.desc || false}
               disabled={disabled}
-              label="Description"
-              placeholder="Enter description (optional)"
+              label={t('forms.ProductOperationForm.operation.description.title')}
+              placeholder={t('forms.ProductOperationForm.operation.description.placeholder')}
             />
 
             <AmountField
@@ -139,8 +149,8 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
               submitCount={submitCount}
               touched={touched.amount || false}
               disabled={disabled}
-              label="Amount"
-              placeholder="Enter amount"
+              label={t('forms.ProductOperationForm.operation.amount.title')}
+              placeholder={t('forms.ProductOperationForm.operation.amount.placeholder')}
             />
 
             <TypeField
@@ -151,7 +161,7 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
               submitCount={submitCount}
               touched={touched.type || false}
               disabled={disabled}
-              label="Type"
+              label={t('forms.ProductOperationForm.operation.type.title')}
             />
           </>
         )}
@@ -164,15 +174,17 @@ const ProductOperationForm = memo<ProductOperationFormProps>(
           submitCount={submitCount}
           touched={touched.categoryId || false}
           disabled={disabled}
-          label="Category"
-          placeholder="Select category"
+          label={t('forms.ProductOperationForm.common.category.title')}
+          placeholder={t('forms.ProductOperationForm.common.category.placeholder')}
           options={categoryOptions}
         />
 
         <div className={formStyle.buttonContainer}>
           <div className={formStyle.buttonWrapper}>
             <Button type="primary" htmlType="submit" disabled={disabled} block>
-              {mode === 'createProduct' || mode === 'createOperation' ? 'Create' : 'Update'}
+              {mode === 'createProduct' || mode === 'createOperation'
+                ? t('forms.ProductOperationForm.common.submit.create')
+                : t('forms.ProductOperationForm.common.submit.update')}
             </Button>
           </div>
         </div>
