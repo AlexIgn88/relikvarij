@@ -3,6 +3,7 @@ import { Category, LoadCategoriesSuccessResponse } from 'src/entities/categories
 import { RootState } from 'src/store/store';
 import { createAsyncThunk, createSelector, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { API, API_BASE_URL, ApiError, COMMAND_ID, LOCAL_STORAGE_KEYS } from 'src/shared/lib/common-consts';
+import { Product } from 'src/entities/product/items-consts';
 
 type CategoriesState = {
   loadCategoriesStatus: ThunkStatus;
@@ -24,6 +25,12 @@ const categoriesSlice = createSlice({
       state.categories.push(action.payload);
       state.categoryIds.push(action.payload.id);
     },
+    updateCategory: (state, action: PayloadAction<Category>) => {
+      const index = state.categories.findIndex((p) => p.id === action.payload.id);
+      if (index !== -1) {
+        state.categories[index] = action.payload;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -44,7 +51,7 @@ const categoriesSlice = createSlice({
       });
   },
 });
-export const { addCategory } = categoriesSlice.actions;
+export const { addCategory, updateCategory } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;
 
@@ -106,3 +113,27 @@ export const addNewCategory = createAsyncThunk<
 
   dispatch(addCategory(result));
 });
+
+export const editCategory = createAsyncThunk<Category, { id: string; data: Category }, { rejectValue: ApiError[] }>(
+  'categories/editCategory',
+  async ({ id, data }, { dispatch, rejectWithValue }) => {
+    const token = localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN_STORAGE_KEY);
+
+    const response = await fetch(`${API_BASE_URL}${API.CATEGORIES}/${id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (result.errors) {
+      return rejectWithValue(result.errors as ApiError[]);
+    }
+
+    dispatch(updateCategory(result));
+  }
+);
