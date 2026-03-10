@@ -4,7 +4,6 @@ import { Mode } from 'src/entities/product/items-list/items-list-consts';
 import s from './items-page.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import ItemFormModalCreate from 'src/features/items/item-form-modal-create/item-form-modal-create';
 import { AdminActionType } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import {
@@ -14,8 +13,9 @@ import {
   selectProducts,
 } from 'src/entities/product/items-slice';
 import { THUNK_STATUSES } from 'src/store/store-consts';
-import ItemFormModalEdit from 'src/features/items/item-form-modal-edit/item-form-modal-edit';
+import ItemFormModal from 'src/features/items/item-form-modal/item-form-modal';
 import ProtectedRoute from 'src/app/router/protected-route/protected-route';
+import Spinner from 'src/shared/ui/spinner/spinner';
 
 const ItemsPage: FC = () => {
   const { t } = useTranslation();
@@ -29,6 +29,7 @@ const ItemsPage: FC = () => {
 
   const items = useAppSelector(selectProducts);
   const pagination = useAppSelector(selectProductsPagination);
+  const profile = useAppSelector((state) => state.profile.profile);
 
   const hasMore = items.length < pagination.total;
 
@@ -41,8 +42,6 @@ const ItemsPage: FC = () => {
     dispatch(loadProducts({ pageNumber: pagination.pageNumber + 1 }));
   }, [dispatch, hasMore, pagination.pageNumber]);
 
-  const profile = useAppSelector((state) => state.profile.profile);
-
   const modal = searchParams.get('modal');
   const id = searchParams.get('id');
 
@@ -50,7 +49,7 @@ const ItemsPage: FC = () => {
   const isEdit = modal === 'edit' && Boolean(id);
 
   if (load) {
-    return <div>Загрузка...</div>;
+    return <Spinner />;
   }
 
   if (!items) {
@@ -71,10 +70,10 @@ const ItemsPage: FC = () => {
       {(isCreate || isEdit) && (
         <ProtectedRoute>
           {isCreate && (
-            <ItemFormModalCreate mode={AdminActionType.CreateProduct} itemId={id} onClose={() => setSearchParams({})} />
+            <ItemFormModal mode={AdminActionType.CreateProduct} itemId={id} onClose={() => setSearchParams({})} />
           )}
           {isEdit && (
-            <ItemFormModalEdit mode={AdminActionType.EditProduct} itemId={id} onClose={() => setSearchParams({})} />
+            <ItemFormModal mode={AdminActionType.EditProduct} itemId={id} onClose={() => setSearchParams({})} />
           )}
         </ProtectedRoute>
       )}

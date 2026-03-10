@@ -59,6 +59,7 @@ const itemsSlice = createSlice({
 });
 
 export const { addProduct, updateProduct } = itemsSlice.actions;
+
 export default itemsSlice.reducer;
 
 const selectItemsState = (state: RootState) => state.items;
@@ -66,6 +67,9 @@ const selectItemsState = (state: RootState) => state.items;
 export const selectloadItemsStatus = createSelector([selectItemsState], (itemsState) => itemsState.loadItemsStatus);
 
 export const selectProducts = createSelector([selectItemsState], (itemsState) => itemsState.products);
+
+export const selectProductById = (state: RootState, id?: string) =>
+  state.items.products.find((product) => product.id === id);
 
 export const selectProductsPagination = createSelector([selectItemsState], (itemsState) => ({
   pageNumber: itemsState.productsPageNumber,

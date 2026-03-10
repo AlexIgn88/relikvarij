@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { selectAuthErrorMessages, signup } from 'src/features/auth/auth-slice';
-import { authFormValidate, initialAuthFormValues } from 'src/features/forms/forms-consts';
+import { initialAuthFormValues, signupFormValidate } from 'src/features/forms/forms-consts';
 
 const SignupPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -25,13 +25,18 @@ const SignupPage: FC = () => {
           <h2>{t('screens.home.signup')}</h2>
           <Formik
             initialValues={initialAuthFormValues}
-            validate={authFormValidate}
+            validate={signupFormValidate}
             onSubmit={(formData) => {
               dispatch(signup({ data: formData, navigate }));
             }}
           >
             {(formik) => (
-              <AuthForm formManager={formik} formElement={formElementRef} autoFocusElement={autoFocusElementRef} />
+              <AuthForm
+                formManager={formik}
+                formElement={formElementRef}
+                autoFocusElement={autoFocusElementRef}
+                withPasswordConfirmation
+              />
             )}
           </Formik>
           {!!authErrorMessages.length && (

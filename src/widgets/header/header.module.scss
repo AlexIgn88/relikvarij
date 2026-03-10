@@ -1,11 +1,11 @@
 .header {
-  height: 96px;
+  padding: 10px 20px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(135deg, #7a5c48 0%, #6a5240 30%, #8f7560 60%, #726050 100%);
   backdrop-filter: blur(8px);
-  padding: 16px 24px;
   font-family: 'Inter', sans-serif;
   color: #ffffff;
   position: sticky;

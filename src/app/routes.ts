@@ -6,4 +6,5 @@ export const APP_ROUTES = {
   PROFILE: '/profile',
   PRODUCTS: '/products',
   CART: '/cart',
+  CATEGORIES: '/categories',
 } as const;

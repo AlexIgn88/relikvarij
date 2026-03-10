@@ -28,6 +28,8 @@ const Header = () => {
     <header className={s.header}>
       <div className={s.left}>
         <Logo />
+        <LanguageToggle />
+        <ThemeToggle />
       </div>
       <Navbar />
       <div className={s.right}>
@@ -46,8 +48,6 @@ const Header = () => {
         ) : (
           <LoginLinks className={s.login} />
         )}
-        <LanguageToggle />
-        <ThemeToggle />
       </div>
     </header>
   );
