@@ -1,18 +1,17 @@
-import React, { FC, useEffect, useRef, useMemo } from 'react';
+import React, { FC, useEffect, useMemo, useRef } from 'react';
+import { Formik } from 'formik';
+
 import Modal from 'src/shared/ui/modal/modal';
 import ProductOperationForm from 'src/features/forms/product-operation-form/product-operation-form';
-import { Formik } from 'formik';
 import { createValidate, getEmptyValues } from 'src/features/forms/product-operation-form/product-operation-form-utils';
 import {
   AdminActionType,
   FormikContext,
 } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { selectProductById, editProduct } from 'src/entities/product/items-slice';
-
+import { addNewProduct, editProduct, selectProductById } from 'src/entities/product/items-slice';
 import { NewProduct, Product } from 'src/entities/product/items-consts';
-
-import { ProductFormValues } from 'src/features/items/item-form-modal-create/item-form-modal-consts';
+import { ProductFormValues } from 'src/features/items/item-form-modal/item-form-modal-consts';
 
 type Props = {
   mode: AdminActionType;
@@ -20,7 +19,7 @@ type Props = {
   onClose: () => void;
 };
 
-const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
+const ItemFormModal: FC<Props> = ({ mode, itemId, onClose }) => {
   const dispatch = useAppDispatch();
 
   const formElementRef = useRef<HTMLFormElement>(null);
@@ -29,7 +28,7 @@ const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
   const product = useAppSelector((state) => selectProductById(state, itemId));
 
   const initialValues = useMemo(() => {
-    if (product) {
+    if (mode === AdminActionType.EditProduct && product) {
       return {
         id: product.id,
         name: product.name,
@@ -41,8 +40,22 @@ const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
         categoryName: product.category.name,
       };
     }
+
+    if (mode === AdminActionType.CreateProduct && product) {
+      const template = product as Product;
+      return {
+        name: template.name,
+        photo: template.photo,
+        desc: template.desc || '',
+        price: template.price,
+        oldPrice: template.oldPrice,
+        categoryId: template.category.id,
+        categoryName: template.category.name,
+      };
+    }
+
     return getEmptyValues(mode);
-  }, [product, mode]);
+  }, [mode, product]);
 
   useEffect(() => {
     document.body.style.overflowY = 'hidden';
@@ -52,21 +65,42 @@ const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
   }, []);
 
   const handleSubmit = (values: ProductFormValues) => {
-    if (!itemId) {
-      // itemId обязателен для режима редактирования
+    if (mode === AdminActionType.CreateProduct) {
+      const createdAt =
+        mode === AdminActionType.CreateProduct && product ? product.createdAt : new Date().toISOString();
+
+      const newProduct: NewProduct = {
+        name: values.name,
+        photo: values.photo || '',
+        desc: values.desc,
+        price: values.price || 0,
+        oldPrice: values.oldPrice,
+        createdAt,
+        categoryId: values.categoryId,
+      };
+
+      dispatch(addNewProduct(newProduct));
+      onClose();
       return;
     }
-    const updatedData: Omit<NewProduct, 'createdAt'> = {
-      name: values.name,
-      photo: values.photo || '',
-      desc: values.desc,
-      price: values.price || 0,
-      oldPrice: values.oldPrice,
-      categoryId: values.categoryId,
-    };
 
-    dispatch(editProduct({ id: itemId, data: updatedData }));
-    onClose();
+    if (mode === AdminActionType.EditProduct) {
+      if (!itemId) {
+        return;
+      }
+
+      const updatedData: Omit<NewProduct, 'createdAt'> = {
+        name: values.name,
+        photo: values.photo || '',
+        desc: values.desc,
+        price: values.price || 0,
+        oldPrice: values.oldPrice,
+        categoryId: values.categoryId,
+      };
+
+      dispatch(editProduct({ id: itemId, data: updatedData }));
+      onClose();
+    }
   };
 
   return (
@@ -92,4 +126,4 @@ const ItemFormModalEdit: FC<Props> = ({ mode, itemId, onClose }) => {
   );
 };
 
-export default ItemFormModalEdit;
+export default ItemFormModal;
