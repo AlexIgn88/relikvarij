@@ -6,6 +6,12 @@ import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { AdminActionType } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import { addNewCategory, editCategory, selectCategoryById } from 'src/entities/categories/categories-slice';
 import { Category } from 'src/entities/categories/categories-consts';
+import CategoryForm from 'src/features/forms/category-form/category-form';
+import {
+  CategoryFormValues,
+  CategoryFormMode,
+} from 'src/features/forms/category-form/types';
+import { categoryFormValidate, initialCategoryFormValues } from 'src/features/forms/category-form/category-form-utils';
 
 type Props = {
   mode: AdminActionType;
@@ -13,31 +19,28 @@ type Props = {
   onClose: () => void;
 };
 
-type CategoryFormValues = {
-  name: string;
-  photo?: string;
-};
-
 const CategoryFormModal: FC<Props> = ({ mode, categoryId, onClose }) => {
   const dispatch = useAppDispatch();
 
   const formElementRef = useRef<HTMLFormElement>(null);
-  const autoFocusElementRef = useRef<HTMLInputElement | null>(null);
+  const autoFocusElementRef = useRef(null);
 
   const category = useAppSelector((state) => selectCategoryById(state, categoryId));
+
+  const formMode: CategoryFormMode = useMemo(
+    () => (mode === AdminActionType.EditProduct ? 'edit' : 'create'),
+    [mode]
+  );
 
   const initialValues = useMemo<CategoryFormValues>(() => {
     if (category) {
       return {
         name: category.name,
-        photo: category.photo,
+        photo: category.photo || '',
       };
     }
 
-    return {
-      name: '',
-      photo: '',
-    };
+    return initialCategoryFormValues;
   }, [category]);
 
   useEffect(() => {
@@ -77,37 +80,25 @@ const CategoryFormModal: FC<Props> = ({ mode, categoryId, onClose }) => {
   };
 
   return (
-    <Modal visible={true} setVisible={onClose}>
-      <Formik<CategoryFormValues> initialValues={initialValues} onSubmit={handleSubmit} enableReinitialize>
-        {(formik) => (
-          <form ref={formElementRef} onSubmit={formik.handleSubmit}>
-            <div>
-              <input
-                ref={autoFocusElementRef}
-                name="name"
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                placeholder="Name"
-              />
-            </div>
-
-            <div>
-              <input
-                name="photo"
-                value={formik.values.photo || ''}
-                onChange={formik.handleChange}
-                placeholder="Photo URL"
-              />
-            </div>
-
-            <button type="submit">Save</button>
-            <button type="button" onClick={onClose}>
-              Cancel
-            </button>
-          </form>
-        )}
-      </Formik>
-    </Modal>
+    <div>
+      <Modal visible={true} setVisible={onClose}>
+        <Formik<CategoryFormValues>
+          initialValues={initialValues}
+          validate={categoryFormValidate}
+          onSubmit={handleSubmit}
+          enableReinitialize
+        >
+          {(formik) => (
+            <CategoryForm
+              mode={formMode}
+              formManager={formik}
+              formElement={formElementRef}
+              autoFocusElement={autoFocusElementRef}
+            />
+          )}
+        </Formik>
+      </Modal>
+    </div>
   );
 };
 

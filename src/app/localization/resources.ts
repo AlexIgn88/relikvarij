@@ -12,6 +12,7 @@ export const resources = {
         products: 'Products',
         operations: 'Operations',
         cart: 'Shopping cart',
+        categories: 'Categories',
       },
       header: {
         logout: 'Logout',
@@ -47,6 +48,11 @@ export const resources = {
             delete: 'Delete',
             add: 'Add to Cart',
             edit: 'Edit',
+          },
+        },
+        categories: {
+          buttons: {
+            create: 'Add category',
           },
         },
       },
@@ -179,6 +185,7 @@ export const resources = {
         products: 'Товары',
         operations: 'Операции',
         cart: 'Корзина',
+        categories: 'Категории',
       },
       header: {
         logout: 'Выйти',
@@ -214,6 +221,11 @@ export const resources = {
             delete: 'Удалить',
             add: 'В корзину',
             edit: 'Редактировать',
+          },
+        },
+        categories: {
+          buttons: {
+            create: 'Добавить категорию',
           },
         },
       },

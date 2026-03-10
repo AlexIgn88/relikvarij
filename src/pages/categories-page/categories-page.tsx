@@ -5,8 +5,10 @@ import CategoryCardPreview from 'src/entities/categories/category-card-preview/c
 import CategoryFormModal from 'src/features/categories/category-form-modal/category-form-modal';
 import { AdminActionType } from 'src/features/forms/product-operation-form/product-operation-form-consts';
 import s from './categories-page.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const CategoriesPage: FC = () => {
+  const { t } = useTranslation();
   const categories = useAppSelector(selectCategories);
 
   const [categoryId, setCategoryId] = useState<string | undefined>();
@@ -19,27 +21,32 @@ const CategoriesPage: FC = () => {
 
   return (
     <main className={s.main}>
-      <button
-        type="button"
-        onClick={() => {
-          setMode(AdminActionType.CreateProduct);
-          setCategoryId(undefined);
-        }}
-      >
-        Add category
-      </button>
-
-      {categories.map((item) => (
-        <div
-          key={item.id}
+      <div className={s.controlPanel}>
+        <button
+          type="button"
+          className={s.controlButton}
           onClick={() => {
-            setMode(AdminActionType.EditProduct);
-            setCategoryId(item.id);
+            setMode(AdminActionType.CreateProduct);
+            setCategoryId(undefined);
           }}
         >
-          <CategoryCardPreview category={item} />
-        </div>
-      ))}
+          {t('screens.categories.buttons.create')}
+        </button>
+      </div>
+
+      <div className={s.grid}>
+        {categories.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => {
+              setMode(AdminActionType.EditProduct);
+              setCategoryId(item.id);
+            }}
+          >
+            <CategoryCardPreview category={item} />
+          </div>
+        ))}
+      </div>
 
       {mode && <CategoryFormModal mode={mode} categoryId={categoryId} onClose={handleCloseModal} />}
     </main>

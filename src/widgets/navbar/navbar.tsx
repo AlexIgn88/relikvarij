@@ -33,7 +33,7 @@ const Navbar: FC = () => {
         to={APP_ROUTES.CATEGORIES}
         className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}
       >
-        Категории
+        {t('navbar.categories')}
       </NavLink>
       {token && profile && (
         <NavLink to="/cart" className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>
