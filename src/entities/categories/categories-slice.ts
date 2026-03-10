@@ -72,6 +72,9 @@ export const selectCategoryIds = createSelector(
   (categoriesState) => categoriesState.categoryIds
 );
 
+export const selectCategoryById = (state: RootState, id?: string) =>
+  state.categories.categories.find((category) => category.id === id);
+
 export const loadCategories = createAsyncThunk<LoadCategoriesSuccessResponse, null, { rejectValue: ApiError[] }>(
   'categories/loadCategories',
   async (_, { rejectWithValue }) => {
