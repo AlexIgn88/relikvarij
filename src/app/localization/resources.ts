@@ -136,6 +136,23 @@ export const resources = {
             categoryRequired: 'Category is required',
           },
         },
+        CategoryForm: {
+          name: {
+            title: 'Category name',
+            placeholder: 'Enter category name',
+          },
+          photo: {
+            title: 'Photo URL',
+            placeholder: 'Enter photo URL',
+          },
+          validation: {
+            nameRequired: 'Name is required',
+            nameTooShort: 'Name must be at least 2 characters',
+            photoRequired: 'Photo is required',
+            photoTooShort: 'Photo must be at least 2 characters',
+          },
+          submit: 'Create category',
+        },
         ProfileForm: {
           name: {
             title: 'Nickname',
@@ -285,6 +302,23 @@ export const resources = {
             typeRequired: 'Тип обязателен для заполнения',
             categoryRequired: 'Категория обязательна для заполнения',
           },
+        },
+        CategoryForm: {
+          name: {
+            title: 'Название категории',
+            placeholder: 'Введите название категории',
+          },
+          photo: {
+            title: 'Ссылка на фото',
+            placeholder: 'Укажите URL фотографии',
+          },
+          validation: {
+            nameRequired: 'Название обязательно для заполнения',
+            nameTooShort: 'Название должно содержать не менее 2 символов',
+            photoRequired: 'Фото обязательно для заполнения',
+            photoTooShort: 'Ссылка на фото должна содержать не менее 2 символов',
+          },
+          submit: 'Создать категорию',
         },
         ProfileForm: {
           name: {
