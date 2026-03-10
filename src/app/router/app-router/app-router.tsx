@@ -6,6 +6,7 @@ import ProfilePage from 'src/pages/profile-page/profile-page';
 
 import ItemsPage from 'src/pages/items-page/items-page';
 import ShoppingCartPage from 'src/pages/shopping-cart-page/shopping-cart-page';
+import CategoriesPage from 'src/pages/categories-page/categories-page';
 import ProtectedRoute from '../protected-route/protected-route';
 import LoginPage from 'src/pages/login-page/login-page';
 import SignupPage from 'src/pages/signup-page/signup-page';
@@ -25,6 +26,7 @@ const AppRouter = () => {
         }
       />
       <Route path={APP_ROUTES.PRODUCTS} element={<ItemsPage />} />
+      <Route path={APP_ROUTES.CATEGORIES} element={<CategoriesPage />} />
       <Route
         path={APP_ROUTES.CART}
         element={
