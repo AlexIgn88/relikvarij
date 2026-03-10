@@ -31,6 +31,7 @@ type Story = StoryObj<typeof meta>;
 const initialValues: AuthFormValues = {
   email: '',
   password: '',
+  passwordConfirmation: '',
 };
 
 const validate = (values: AuthFormValues): Partial<Record<keyof AuthFormValues, string>> => {
@@ -83,6 +84,7 @@ export const WithInitialValues: Story = {
         initialValues={{
           email: 'user@example.com',
           password: 'password123',
+          passwordConfirmation: 'password123',
         }}
         validate={validate}
         onSubmit={(values, { resetForm }) => {

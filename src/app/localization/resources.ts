@@ -12,6 +12,7 @@ export const resources = {
         products: 'Products',
         operations: 'Operations',
         cart: 'Shopping cart',
+        categories: 'Categories',
       },
       header: {
         logout: 'Logout',
@@ -49,6 +50,11 @@ export const resources = {
             edit: 'Edit',
           },
         },
+        categories: {
+          buttons: {
+            create: 'Add category',
+          },
+        },
       },
       forms: {
         AuthForm: {
@@ -60,7 +66,101 @@ export const resources = {
             title: 'Password',
             placeholder: 'Enter password',
           },
+          passwordConfirmation: {
+            title: 'Confirm password',
+            placeholder: 'Confirm password',
+          },
+          validation: {
+            emailRequired: 'Email is required',
+            emailInvalid: 'Invalid email address',
+            passwordRequired: 'Password is required',
+            passwordConfirmationRequired: 'Password confirmation is required',
+            passwordsNotMatch: 'Passwords do not match',
+          },
           submit: 'Submit',
+        },
+        ProductOperationForm: {
+          product: {
+            name: {
+              title: 'Product Name',
+              placeholder: 'Enter product name',
+            },
+            photo: {
+              title: 'Photo URL',
+              placeholder: 'Enter photo URL',
+            },
+            description: {
+              title: 'Description',
+              placeholder: 'Enter description (optional)',
+            },
+            price: {
+              title: 'Price',
+              placeholder: 'Enter price',
+            },
+            oldPrice: {
+              title: 'Old Price',
+              placeholder: 'Enter old price (optional)',
+            },
+          },
+          operation: {
+            name: {
+              title: 'Operation Name',
+              placeholder: 'Enter operation name',
+            },
+            description: {
+              title: 'Description',
+              placeholder: 'Enter description (optional)',
+            },
+            amount: {
+              title: 'Amount',
+              placeholder: 'Enter amount',
+            },
+            type: {
+              title: 'Type',
+            },
+          },
+          common: {
+            category: {
+              title: 'Category',
+              placeholder: 'Select category',
+            },
+            submit: {
+              create: 'Create',
+              update: 'Update',
+            },
+          },
+          validation: {
+            nameRequired: 'Name is required',
+            nameTooShort: 'Name must be at least 2 characters',
+            photoRequired: 'Photo is required',
+            photoTooShort: 'Photo must be at least 2 characters',
+            priceRequired: 'Price is required',
+            priceTooSmall: 'Price must be greater than 0',
+            amountRequired: 'Amount is required',
+            amountTooSmall: 'Amount must be greater than 0',
+            typeRequired: 'Type is required',
+            categoryRequired: 'Category is required',
+          },
+        },
+        CategoryForm: {
+          name: {
+            title: 'Category name',
+            placeholder: 'Enter category name',
+          },
+          photo: {
+            title: 'Photo URL',
+            placeholder: 'Enter photo URL',
+          },
+          validation: {
+            nameRequired: 'Name is required',
+            nameTooShort: 'Name must be at least 2 characters',
+            photoRequired: 'Photo is required',
+            photoTooShort: 'Photo must be at least 2 characters',
+          },
+          submit: {
+            create: 'Create category',
+            update: 'Update category',
+          },
         },
         ProfileForm: {
           name: {
@@ -88,6 +188,7 @@ export const resources = {
         products: 'Товары',
         operations: 'Операции',
         cart: 'Корзина',
+        categories: 'Категории',
       },
       header: {
         logout: 'Выйти',
@@ -125,6 +226,11 @@ export const resources = {
             edit: 'Редактировать',
           },
         },
+        categories: {
+          buttons: {
+            create: 'Добавить категорию',
+          },
+        },
       },
       forms: {
         AuthForm: {
@@ -136,7 +242,101 @@ export const resources = {
             title: 'Пароль',
             placeholder: 'Укажите пароль',
           },
+          passwordConfirmation: {
+            title: 'Подтвердите пароль',
+            placeholder: 'Подтвердите пароль',
+          },
+          validation: {
+            emailRequired: 'Поле Email обязательно для заполнения',
+            emailInvalid: 'Некорректный адрес электронной почты',
+            passwordRequired: 'Пароль обязателен для заполнения',
+            passwordConfirmationRequired: 'Подтверждение пароля обязательно для заполнения',
+            passwordsNotMatch: 'Пароли не совпадают',
+          },
           submit: 'Отправить',
+        },
+        ProductOperationForm: {
+          product: {
+            name: {
+              title: 'Название товара',
+              placeholder: 'Введите название товара',
+            },
+            photo: {
+              title: 'Ссылка на фото',
+              placeholder: 'Укажите URL фотографии',
+            },
+            description: {
+              title: 'Описание',
+              placeholder: 'Введите описание (необязательно)',
+            },
+            price: {
+              title: 'Цена',
+              placeholder: 'Укажите цену',
+            },
+            oldPrice: {
+              title: 'Старая цена',
+              placeholder: 'Укажите старую цену (необязательно)',
+            },
+          },
+          operation: {
+            name: {
+              title: 'Название операции',
+              placeholder: 'Введите название операции',
+            },
+            description: {
+              title: 'Описание',
+              placeholder: 'Введите описание (необязательно)',
+            },
+            amount: {
+              title: 'Сумма',
+              placeholder: 'Укажите сумму',
+            },
+            type: {
+              title: 'Тип',
+            },
+          },
+          common: {
+            category: {
+              title: 'Категория',
+              placeholder: 'Выберите категорию',
+            },
+            submit: {
+              create: 'Создать',
+              update: 'Обновить',
+            },
+          },
+          validation: {
+            nameRequired: 'Название обязательно для заполнения',
+            nameTooShort: 'Название должно содержать не менее 2 символов',
+            photoRequired: 'Фото обязательно для заполнения',
+            photoTooShort: 'Ссылка на фото должна содержать не менее 2 символов',
+            priceRequired: 'Цена обязательна для заполнения',
+            priceTooSmall: 'Цена должна быть больше 0',
+            amountRequired: 'Сумма обязательна для заполнения',
+            amountTooSmall: 'Сумма должна быть больше 0',
+            typeRequired: 'Тип обязателен для заполнения',
+            categoryRequired: 'Категория обязательна для заполнения',
+          },
+        },
+        CategoryForm: {
+          name: {
+            title: 'Название категории',
+            placeholder: 'Введите название категории',
+          },
+          photo: {
+            title: 'Ссылка на фото',
+            placeholder: 'Укажите URL фотографии',
+          },
+          validation: {
+            nameRequired: 'Название обязательно для заполнения',
+            nameTooShort: 'Название должно содержать не менее 2 символов',
+            photoRequired: 'Фото обязательно для заполнения',
+            photoTooShort: 'Ссылка на фото должна содержать не менее 2 символов',
+          },
+          submit: {
+            create: 'Создать категорию',
+            update: 'Редактировать категорию',
+          },
         },
         ProfileForm: {
           name: {
